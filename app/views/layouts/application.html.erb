@@ -9,8 +9,12 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body id="bs-override" class="bg">
     <%= render 'layouts/navigation' %>
-    <%= yield %>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+
   </body>
 </html>
