@@ -10,7 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_14_012517) do
+ActiveRecord::Schema.define(version: 2018_09_14_064317) do
+
+  create_table "kittens", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "litter_id"
+    t.string "name"
+    t.boolean "sex"
+    t.string "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["litter_id"], name: "index_kittens_on_litter_id"
+    t.index ["user_id"], name: "index_kittens_on_user_id"
+  end
+
+  create_table "litters", force: :cascade do |t|
+    t.string "litter_name"
+    t.date "foster_start_date"
+    t.date "foster_end_date"
+    t.boolean "with_mom", default: false, null: false
+    t.string "mom_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

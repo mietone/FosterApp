@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  litter_name: MyString
+  foster_start_date: 2018-09-13
+  foster_end_date: 2018-09-13
+  with_mom: false
+  mom_name: MyString
+
+two:
+  litter_name: MyString
+  foster_start_date: 2018-09-13
+  foster_end_date: 2018-09-13
+  with_mom: false
+  mom_name: MyString
