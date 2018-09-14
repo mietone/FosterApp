@@ -1,3 +1,27 @@
+/* import the necessary Bootstrap files */
+@import "bootstrap/functions";
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+
+/* -------customization-------- */
+
+$gray-100: #f8f9fa;
+$gray-600: #868e96;
+$gray-800: #343a40;
+$black:  #000;
+$blue:    #b490f5;
+$red:     #dc3545;
+$yellow:  #ffc107;
+$cyan:    #17a2b8;
+
+$theme-colors: (
+  primary: #bca8e0
+);
+
+#bs-override.bg {
+  background-color: #e9effb;
+  padding-top: 3rem;
+}
 
 body {
   padding-top: 1.5rem;
