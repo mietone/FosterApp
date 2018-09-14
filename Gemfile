@@ -32,6 +32,7 @@ gem 'sprockets-rails', '~> 3.2', '>= 3.2.1'
 gem 'popper_js', '~> 1.14', '>= 1.14.3'
 gem 'simple_form', '~> 4.0', '>= 4.0.1'
 gem 'devise', '~> 4.5'
+gem 'cocoon', '~> 1.2', '>= 1.2.11'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
