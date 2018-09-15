@@ -9,9 +9,17 @@ class LittersController < ApplicationController
   end
 
   def new
+    @litter = Litter.new
   end
 
   def create
+    @litter = current_user.litters.new(litter_params)
+
+    if @litter.save
+      redirect_to @litter
+    else
+      render :new
+    end
   end
 
   def edit
