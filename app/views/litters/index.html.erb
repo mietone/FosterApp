@@ -1,4 +1,6 @@
-<h4>This is the index page</h4>
+<div class="pb-1">
+  <h1 class="display-3 text-muted">List of Litters</h1>
+</div>
 
 <% @litters.each do |litter| %>
   <h1><%= link_to litter.name, litter_path(litter) %></h1>
@@ -8,4 +10,11 @@
   <h4>From: <%= litter.start_date %></h4>
   <h4>To: <%= litter.end_date %></h4>
   <br>
+  <% if litter.with_mom %>
+    <%= litter.mom_name %>
+  <% else %>
+    <%= "no mom" %>
+  <% end %>
 <% end %>
+
+<%= link_to "Add Litter", new_litter_path %>
