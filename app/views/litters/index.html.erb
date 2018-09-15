@@ -1,1 +1,11 @@
-<h1>Home page</h1>
+<h4>This is the index page</h4>
+
+<% @litters.each do |litter| %>
+  <h1><%= link_to litter.name, litter_path(litter) %></h1>
+
+  <br>
+
+  <h4>From: <%= litter.start_date %></h4>
+  <h4>To: <%= litter.end_date %></h4>
+  <br>
+<% end %>

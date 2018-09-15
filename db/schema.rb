@@ -25,9 +25,9 @@ ActiveRecord::Schema.define(version: 2018_09_14_064317) do
   end
 
   create_table "litters", force: :cascade do |t|
-    t.string "litter_name"
-    t.date "foster_start_date"
-    t.date "foster_end_date"
+    t.string "name"
+    t.date "start_date"
+    t.date "end_date"
     t.boolean "with_mom", default: false, null: false
     t.string "mom_name"
     t.datetime "created_at", null: false
