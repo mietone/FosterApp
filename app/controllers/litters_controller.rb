@@ -34,7 +34,7 @@ class LittersController < ApplicationController
   private
 
   def litter_params
-    params.require(:litter).premit(:name, :start_date, :end_date, :with_mom, :mom_name)
+    params.require(:litter).permit(:name, :start_date, :end_date, :with_mom, :mom_name)
   end
 
   def find_litter

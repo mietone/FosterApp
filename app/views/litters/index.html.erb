@@ -2,19 +2,34 @@
   <h1 class="display-3 text-muted">List of Litters</h1>
 </div>
 
-<% @litters.each do |litter| %>
-  <h1><%= link_to litter.name, litter_path(litter) %></h1>
-
-  <br>
-
-  <h4>From: <%= litter.start_date %></h4>
-  <h4>To: <%= litter.end_date %></h4>
-  <br>
-  <% if litter.with_mom %>
-    <%= litter.mom_name %>
-  <% else %>
-    <%= "no mom" %>
-  <% end %>
+<% @litters.in_groups_of(3, false).each do |group| %>
+  <div class="row">
+    <% group.each do |litter| %>
+      <div class="col-xs-12 col-md-4 mb-4">
+        <div class="card bg-light">
+          <div class="card-body">
+            <h1 class="card-title">
+              <%= link_to litter.name, litter_path(litter) %>
+            </h1>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">From: <%= litter.start_date %> <br>
+                                        To: <%= litter.end_date %></li>
+            <li class="list-group-item"><%= (litter.end_date - litter.start_date).to_i %> days</li>
+            <% if litter.with_mom %>
+              <li class="list-group-item">
+                Mom: <%= litter.mom_name %>
+              </li>
+            <% end %>
+          </ul>
+          <div class="card-body text-center">
+            <%= link_to 'edit', edit_litter_path(litter), class: 'btn btn-outline-primary' %>
+            <%= link_to 'view', litter_path(litter), class: 'btn btn-outline-primary' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 <% end %>
 
 <%= link_to "Add Litter", new_litter_path %>
