@@ -16,6 +16,9 @@
             <li class="list-group-item">From: <%= litter.start_date %> <br>
                                         To: <%= litter.end_date %></li>
             <li class="list-group-item"><%= (litter.end_date - litter.start_date).to_i %> days</li>
+            <li class="list-group-item">
+                <%= pluralize(litter.kittens.size, 'kitten') %>
+            </li>
             <% if litter.with_mom %>
               <li class="list-group-item">
                 Mom: <%= litter.mom_name %>

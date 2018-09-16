@@ -6,10 +6,12 @@ class LittersController < ApplicationController
   end
 
   def show
+    @kittens = @litter.kittens
   end
 
   def new
     @litter = Litter.new
+    @litter.kitten.build(user_id: current_user.id)
   end
 
   def create
@@ -26,15 +28,40 @@ class LittersController < ApplicationController
   end
 
   def update
+    if @litter.update(litter_params)
+      redirect_to @litter
+    else
+      render :edit
+    end
   end
 
   def destroy
+    if @litter.destroy
+      redirect_to root_path
+    else
+      render :show
+    end
   end
 
   private
 
   def litter_params
-    params.require(:litter).permit(:name, :start_date, :end_date, :with_mom, :mom_name)
+    params.require(:litter).permit(
+      :name,
+      :start_date,
+      :end_date,
+      :with_mom,
+      :mom_name,
+      kittens_attributes: [
+        :id,
+        :user_id,
+        :litter_id,
+        :name,
+        :sex,
+        :color,
+        :_destroy
+      ]
+    )
   end
 
   def find_litter

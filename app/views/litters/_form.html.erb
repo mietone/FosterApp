@@ -6,6 +6,22 @@
 
   <h5 class=""><%= f.label :end_date, "Foster End Date" %><%= f.date_field :end_date,  class: 'form-control' %></h5>
 
+
+  <h3>Kittens</h3>
+  <div class="kittens">
+    <%= f.simple_fields_for :kittens do |kitten| %>
+    <%= render 'kitten_fields', f: kitten %>
+    <% end %>
+  </div>
+
+  <div id="kittens">
+      <%= link_to_add_association 'Add Kitten', f, :kittens,
+      wrap_object: Proc.new {|kitten| kitten.user_id = current_user.id; kitten },
+      'data-association-insertion-node' => "#kittens",
+      # 'data-association-insertion-method' => "append",
+      class: 'btn btn-info btn-sm' %>
+    </div>
+
   <%= f.button :submit %>
 
 <% end %>

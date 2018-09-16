@@ -1,0 +1,12 @@
+<div class='nested-fields'>
+  <div class="row">
+    <div class="form-group col">
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.input :name,  class: 'form-control' %>
+      <%= f.input :color, class: 'form-control' %>
+      <%= f.input :sex, as: :radio_buttons, collection: [['Girl', 0] ,['Boy', 1]], checked: (f.object.sex ? 1 : 0), wrapper: :vertical_collection_inline %>
+    </div>
+  </div>
+
+    <%= link_to_remove_association "X Remove This Kitten Info", f %>
+</div>

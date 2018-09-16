@@ -1,4 +1,51 @@
-<h1 class="display-3"><%= @litter.name %></h1>
+<div class="card">
+  <div class="row">
+    <div class="col-md-5 mb-4">
+      <h1 class="display-3"><%= @litter.name %></h1>
+    </div>
 
-<h5><%= @litter.start_date %></h5>
-<h5><%= @litter.end_date %></h5>
+    <div class="col-md-7 mb-4">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-lg-4">
+              <h5 class="text-muted">From: </h5>
+              <%= @litter.start_date %>
+            </div>
+            <div class="col-lg-4">
+              <h5 class="text-muted">To: </h5>
+              <%= @litter.end_date %>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <% @kittens.in_groups_of(4, false).each do |group| %>
+    <div class="row m-4">
+      <% group.each do |kitten| %>
+        <div class="col-xs-12 col-md-3 ">
+          <div class="card bg-light">
+            <div class="card-body">
+              <h4 class="card-title">
+                <%= link_to kitten.name, litter_kitten_path(@litter, kitten)%>
+              </h4>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><%= kitten.color %></li>
+              <li class="list-group-item"><%= kitten.sex ? "boy" : "girl" %></li>
+            </ul>
+            <div class="card-body text-center">
+              <%= link_to 'view', litter_kitten_path(@litter, kitten), class: 'btn btn-outline-primary' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= link_to "Back", root_path, class: "btn btn-outline-primary" %>
+  <%= link_to "Edit Litter", edit_litter_path, class: "btn btn-outline-primary" %>
+  <%= link_to "Delete Litter", litter_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-primary" %>
+</div>
