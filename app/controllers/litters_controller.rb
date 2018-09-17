@@ -11,7 +11,7 @@ class LittersController < ApplicationController
 
   def new
     @litter = Litter.new
-    @litter.kitten.build(user_id: current_user.id)
+    @litter.kittens.build(user_id: current_user.id)
   end
 
   def create
