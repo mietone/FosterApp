@@ -13,9 +13,13 @@
             </h1>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">From: <%= litter.start_date %> <br>
-                                        To: <%= litter.end_date %></li>
-            <li class="list-group-item"><%= (litter.end_date - litter.start_date).to_i %> days</li>
+            <li class="list-group-item">
+              From: <%= litter.start_date %> <br>
+              To: <%= litter.end_date %>
+            </li>
+            <li class="list-group-item">
+              <%= (litter.end_date - litter.start_date).to_i %> days
+            </li>
             <li class="list-group-item">
                 <%= pluralize(litter.kittens.size, 'kitten') %>
             </li>
@@ -26,8 +30,12 @@
             <% end %>
           </ul>
           <div class="card-body text-center">
-            <%= link_to 'edit', edit_litter_path(litter), class: 'btn btn-outline-primary' %>
             <%= link_to 'view', litter_path(litter), class: 'btn btn-outline-primary' %>
+            <%= link_to 'edit', edit_litter_path(litter), class: 'btn btn-outline-primary' %>
+            <%= link_to 'delete', litter_path(litter),
+                method: :delete,
+                data: { confirm: 'Are you sure?' },
+                class: 'btn btn-outline-primary' %>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-<%= simple_form_for @litter do |f| %>
+<%= simple_form_for @litter, html: { multipart: true }   do |f| %>
 
   <h3><%= f.input :name, label: "Litter Name", autofocus: true %></h3>
 
@@ -15,13 +15,13 @@
   </div>
 
   <div id="kittens">
-      <%= link_to_add_association 'Add Kitten', f, :kittens,
-      wrap_object: Proc.new {|kitten| kitten.user_id = current_user.id; kitten },
-      'data-association-insertion-node' => "#kittens",
-      # 'data-association-insertion-method' => "append",
-      class: 'btn btn-info btn-sm' %>
-    </div>
+    <%= link_to_add_association 'Add Kitten', f, :kittens,
+    wrap_object: Proc.new {|kitten| kitten.user_id = current_user.id; kitten },
+    'data-association-insertion-node' => "#kittens",
+    # 'data-association-insertion-method' => "append",
+    class: 'btn btn-info btn-sm' %>
+  </div>
 
-  <%= f.button :submit %>
+  <%= f.button :submit, class: "btn btn-info" %>
 
 <% end %>
