@@ -2,37 +2,57 @@
 
 <%= simple_form_for @litter, html: { multipart: true }  do |f| %>
 
-  <h3><%= f.input :name, label: "Litter Name", autofocus: true %></h3>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card bg-light border-info">
 
-  <h5 class=""><%= f.label :start_date, "Foster Start Date" %><%= f.date_field :start_date,  class: 'form-control' %></h5>
+        <div class="card-header">
+          <div>
+            <h3><%= f.input :name, label: "Litter Name / Litter ID", autofocus: true %></h3>
+          </div>
+        </div>
 
-  <h5 class=""><%= f.label :end_date, "Foster End Date" %><%= f.date_field :end_date,  class: 'form-control' %></h5>
+        <div class="card-body">
+          <div class="row">
+            <div class="form-group col">
+              <h5 class=""><%= f.label :start_date, "Foster Start Date" %><%= f.date_field :start_date, value: f.object.start_date, class: 'form-control' %></h5>
+            </div>
+            <div class="form-group col">
+              <h5 class=""><%= f.label :end_date, "Foster End Date" %><%= f.date_field :end_date, value: f.object.end_date, class: 'form-control' %></h5>
+            </div>
+          </div>
 
+          <hr>
 
-  <h3>Kittens</h3>
+          <div class="row">
+            <div class="form-group col">
+              <div class="d-flex align-items-center">
+                <h3 class="pr-3"><span>Kitten Info</span></h3>
+                  <%= link_to_add_association 'Add Kitten', f, :kittens,
+                  wrap_object: Proc.new {|kit| kit.user_id = current_user.id; kit },
+                  'data-association-insertion-node' => "#kittens",
+                  # 'data-association-insertion-method' => "append",
+                  class: 'btn btn-info btn-sm' %>
+              </div><!--d-flex-->
 
-  <div id="kittens">
-    <div class="">
-      <h3 class="pr-3"><span>Kitten Info</span></h3>
-      <%= link_to_add_association 'Add Kitten', f, :kittens,
-      wrap_object: Proc.new {|kit| kit.user_id = current_user.id; kit },
-      'data-association-insertion-node' => "#kittens",
-      # 'data-association-insertion-method' => "append",
-      class: 'btn btn-info btn-sm' %>
-    </div>
+              <div id="kittens">
+                <%= f.simple_fields_for :kittens do |kitten| %>
+                <%= render 'kitten_fields', f: kitten %>
+                  <div class="">
+                    <% if kitten.object.name.present? %>
+                      <p>Delete Kitten: <%= kitten.object.name %> <%= kitten.check_box :_destroy %></p>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div><!--id="kittens"-->
+            </div><!--form-group-->
+          </div><!--row-->
+        </div><!--card-body-->
 
-    <%= f.simple_fields_for :kittens do |kitten| %>
-      <%= render 'kitten_fields', f: kitten %>
-      <div class="">
-        <br>
-        <% if kitten.object.name.present? %>
-        <p>Delete Kitten: <%= kitten.object.name %> <%= kitten.check_box :_destroy %></p>
-        <% end %>
-        <hr>
-      </div>
-    <% end %>
-  </div><!--id="kittens"-->
+      </div><!--card-->
+      <%= f.button :submit, class: "btn btn-info" %>
+    </div><!--col-md-12-->
+  </div><!--row-->
 
-  <%= f.button :submit, class: "btn btn-info" %>
 
 <% end %>

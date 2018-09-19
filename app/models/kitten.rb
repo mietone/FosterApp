@@ -6,4 +6,12 @@ class Kitten < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
+  after_destroy :delete_empty_upload_directory
+
+private
+
+  def delete_empty_upload_directory
+    FileUtils.rm_rf(Rails.root.join('public', 'uploads', 'kitten', 'image', self.id.to_s)) if self.image
+  end
+
 end

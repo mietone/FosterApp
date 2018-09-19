@@ -9,7 +9,6 @@
     <div class="form-group col">
       <% if f.object.image.present? %>
       <%= image_tag f.object.image_url(:thumb).to_s %>
-      <br>
       <%= f.check_box :remove_image %>
       <%= f.label :destroy, "Remove Image" %>
       <% else %>
@@ -21,4 +20,5 @@
   </div>
 
     <%= link_to_remove_association "X Remove This Kitten Info", f %>
+    <hr>
 </div>
