@@ -15,7 +15,7 @@ class LittersController < ApplicationController
   end
 
   def create
-    @litter = current_user.litters.new(litter_params)
+    @litter = Litter.new(litter_params)
 
     if @litter.save
       redirect_to @litter

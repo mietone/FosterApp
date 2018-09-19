@@ -18,7 +18,9 @@
               To: <%= litter.end_date %>
             </li>
             <li class="list-group-item">
-              <%= (litter.end_date - litter.start_date).to_i %> days
+              <% if litter.end_date && litter.start_date %>
+                <%= (litter.end_date - litter.start_date).to_i %> days
+              <% end %>
             </li>
             <li class="list-group-item">
                 <%= pluralize(litter.kittens.size, 'kitten') %>

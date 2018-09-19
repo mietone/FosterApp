@@ -10,18 +10,6 @@
 
 
   <h3>Kittens</h3>
-  <div class="kittens">
-    <%= f.simple_fields_for :kittens do |kitten| %>
-    <%= render 'kitten_fields', f: kitten %>
-    <div class="">
-      <br>
-      <% if kitten.object.name.present? %>
-      <p>Delete Kitten: <%= kitten.object.name %> <%= kitten.check_box :_destroy %></p>
-      <% end %>
-      <hr>
-    </div>
-    <% end %>
-  </div>
 
   <div id="kittens">
     <div class="">
@@ -32,7 +20,18 @@
       # 'data-association-insertion-method' => "append",
       class: 'btn btn-info btn-sm' %>
     </div>
-  </div>
+
+    <%= f.simple_fields_for :kittens do |kitten| %>
+      <%= render 'kitten_fields', f: kitten %>
+      <div class="">
+        <br>
+        <% if kitten.object.name.present? %>
+        <p>Delete Kitten: <%= kitten.object.name %> <%= kitten.check_box :_destroy %></p>
+        <% end %>
+        <hr>
+      </div>
+    <% end %>
+  </div><!--id="kittens"-->
 
   <%= f.button :submit, class: "btn btn-info" %>
 
