@@ -16,7 +16,6 @@ class LittersController < ApplicationController
 
   def create
     @litter = current_user.litters.new(litter_params)
-    @litter.kittens.first.user_id = current_user.id
 
     if @litter.save
       redirect_to @litter

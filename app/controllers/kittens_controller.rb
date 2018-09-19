@@ -10,5 +10,5 @@ class KittensController < ApplicationController
   def find_kitten
     @kitten = Kitten.find(params[:id])
   end
-  
+
 end
