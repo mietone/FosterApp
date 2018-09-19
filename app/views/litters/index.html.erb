@@ -32,10 +32,6 @@
           <div class="card-body text-center">
             <%= link_to 'view', litter_path(litter), class: 'btn btn-outline-primary' %>
             <%= link_to 'edit', edit_litter_path(litter), class: 'btn btn-outline-primary' %>
-            <%= link_to 'delete', litter_path(litter),
-                method: :delete,
-                data: { confirm: 'Are you sure?' },
-                class: 'btn btn-outline-primary' %>
           </div>
         </div>
       </div>

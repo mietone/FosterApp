@@ -1,9 +1,13 @@
 <div class="card bg-light">
   <div class="row">
 
-    <div>
+    <div class="col-lg-7">
+      <%= image_tag @kitten.image_url(:full).to_s, class: 'rounded m-2' %>
+    </div>
+
+    <div class="col-lg-5">
       <div class="card-body">
-        <h2 class="card-title">
+        <h2 class="card-title <%= @kitten.sex ? "boy" : "girl" %>">
             <%= @kitten.name %>
         </h2>
 

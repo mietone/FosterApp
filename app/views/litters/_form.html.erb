@@ -1,4 +1,6 @@
-<%= simple_form_for @litter, html: { multipart: true }   do |f| %>
+<%= render 'shared/errors', object: @litter %>
+
+<%= simple_form_for @litter, html: { multipart: true }  do |f| %>
 
   <h3><%= f.input :name, label: "Litter Name", autofocus: true %></h3>
 
@@ -11,15 +13,25 @@
   <div class="kittens">
     <%= f.simple_fields_for :kittens do |kitten| %>
     <%= render 'kitten_fields', f: kitten %>
+    <div class="">
+      <br>
+      <% if kitten.object.name.present? %>
+      <p>Delete Kitten: <%= kitten.object.name %> <%= kitten.check_box :_destroy %></p>
+      <% end %>
+      <hr>
+    </div>
     <% end %>
   </div>
 
   <div id="kittens">
-    <%= link_to_add_association 'Add Kitten', f, :kittens,
-    wrap_object: Proc.new {|kitten| kitten.user_id = current_user.id; kitten },
-    'data-association-insertion-node' => "#kittens",
-    # 'data-association-insertion-method' => "append",
-    class: 'btn btn-info btn-sm' %>
+    <div class="">
+      <h3 class="pr-3"><span>Kitten Info</span></h3>
+      <%= link_to_add_association 'Add Kitten', f, :kittens,
+      wrap_object: Proc.new {|kit| kit.user_id = current_user.id; kit },
+      'data-association-insertion-node' => "#kittens",
+      # 'data-association-insertion-method' => "append",
+      class: 'btn btn-info btn-sm' %>
+    </div>
   </div>
 
   <%= f.button :submit, class: "btn btn-info" %>

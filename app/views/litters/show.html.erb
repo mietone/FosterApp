@@ -27,6 +27,7 @@
       <% group.each do |kitten| %>
         <div class="col-xs-12 col-md-3 ">
           <div class="card bg-light">
+            <%= image_tag kitten.image_url(:thumb).to_s, class: 'card-img-top' %>
             <div class="card-body">
               <h4 class="card-title">
                 <%= link_to kitten.name, litter_kitten_path(@litter, kitten)%>
