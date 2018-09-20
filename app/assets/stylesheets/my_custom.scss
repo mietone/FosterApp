@@ -28,10 +28,13 @@ body {
 }
 
 /* ----cards----- */
+
 #bs-override h1.card-title a,
 #bs-override h4.card-title a,
 #bs-override h1.display-3,
-#bs-override h4.litter-name {
+#bs-override h4.litter-name,
+#bs-override h2.card-title.boy,
+#bs-override h2.card-title.girl {
   font-family: 'Ubuntu', sans-serif;
   font-weight: 300;
 }
@@ -39,6 +42,35 @@ body {
 #bs-override h1.card-title a {
   color: map-get($theme-colors, "primary");
   font-size: 60px;
+}
+
+#bs-override h1.display-3,
+#bs-override h4.litter-name {
+  color: map-get($theme-colors, "primary");
+}
+
+#bs-override h4.card-title a.boy {
+  color: lightblue;
+  font-size: 40px;
+}
+
+#bs-override h4.card-title a.girl {
+  color: pink;
+  font-size: 40px;
+}
+
+#bs-override h2.card-title.boy {
+  color: lightblue;
+  font-size: 60px;
+}
+
+#bs-override h2.card-title.girl {
+  color: pink;
+  font-size: 60px;
+}
+
+#bs-override li.list-group-item {
+  background-color: transparent;
 }
 
 #bs-override div.card.card-custom {
@@ -50,8 +82,12 @@ body {
   border-bottom: 1px solid rgba(0,0,0,.125);
 }
 
-#bs-override li.list-group-item {
-  background-color: transparent;
+#bs-override div.border-boy {
+  border: 1px solid lightblue;
+}
+
+#bs-override div.border-girl {
+  border: 1px solid pink;
 }
 
 /* ----buttons----- */

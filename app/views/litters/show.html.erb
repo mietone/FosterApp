@@ -23,6 +23,14 @@
               </div>
             </div>
           </li>
+          <li class="list-group-item">
+            <%= pluralize(@litter.kittens.size, 'kitten') %>
+          </li>
+          <li class="list-group-item">
+            <h6 class="text-muted">Fostered By:
+              <span class="font-weight-normal d-inline-block mb-0.5 ml-1"><%= @litter.users.first.username %><span>
+            </h6>
+          </li>
         </ul>
       </div>
     </div>
@@ -32,11 +40,15 @@
     <div class="row m-4">
       <% group.each do |kitten| %>
         <div class="col-xs-12 col-md-3 ">
-          <div class="card bg-light">
+          <div class="card bg-light <%= kitten.sex ? "border-boy" : "border-girl" %>">
             <%= image_tag kitten.image_url(:thumb).to_s, class: 'card-img-top' %>
             <div class="card-body">
               <h4 class="card-title">
-                <%= link_to kitten.name, litter_kitten_path(@litter, kitten)%>
+                <% if kitten.sex %>
+                  <%= link_to kitten.name, litter_kitten_path(@litter, kitten), class: 'boy' %>
+                <% else %>
+                  <%= link_to kitten.name, litter_kitten_path(@litter, kitten), class: 'girl' %>
+                <% end %>
               </h4>
             </div>
             <ul class="list-group list-group-flush">
@@ -53,6 +65,8 @@
   <% end %>
 
   <%= link_to "Back", root_path, class: "btn btn-outline-primary" %>
-  <%= link_to "Edit Litter", edit_litter_path, class: "btn btn-outline-primary" %>
-  <%= link_to "Delete Litter", litter_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-primary" %>
+  <% if @litter.users.first == current_user %>
+    <%= link_to "Edit Litter", edit_litter_path, class: "btn btn-outline-primary" %>
+    <%= link_to "Delete Litter", litter_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-primary" %>
+  <% end %>
 </div>
