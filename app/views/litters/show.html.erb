@@ -1,24 +1,30 @@
-<div class="card">
-  <div class="row">
-    <div class="col-md-5 mb-4">
-      <h1 class="display-3"><%= @litter.name %></h1>
-    </div>
+<div class="card card-custom">
+  <div class="card-top p-4">
+    <div class="row bottom-line">
+      <div class="col-md-5 mb-4">
+        <h1 class="display-3"><%= @litter.name %></h1>
+      </div>
 
-    <div class="col-md-7 mb-4">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-lg-4">
-              <h5 class="text-muted">From: </h5>
-              <%= @litter.start_date %>
+      <div class="col-md-7 mb-4">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-lg-4">
+                <h5 class="text-muted">From: </h5>
+                <%= @litter.start_date %>
+              </div>
+              <div class="col-lg-4">
+                <h5 class="text-muted">To: </h5>
+                <%= @litter.end_date %>
+              </div>
+              <div class="col-lg-4">
+                <h5 class="text-muted">Fostered: </h5>
+                <%= (@litter.end_date - @litter.start_date).to_i %> days
+              </div>
             </div>
-            <div class="col-lg-4">
-              <h5 class="text-muted">To: </h5>
-              <%= @litter.end_date %>
-            </div>
-          </div>
-        </li>
-      </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 
