@@ -33,7 +33,9 @@
           </ul>
           <div class="card-body text-center">
             <%= link_to 'view', litter_path(litter), class: 'btn btn-outline-primary' %>
-            <%= link_to 'edit', edit_litter_path(litter), class: 'btn btn-outline-primary' %>
+            <% if litter.users.first == current_user %>
+              <%= link_to 'edit', edit_litter_path(litter), class: 'btn btn-outline-primary' %>
+            <% end %>
           </div>
         </div>
       </div>

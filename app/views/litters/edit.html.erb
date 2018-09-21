@@ -3,3 +3,7 @@
 </div>
 
 <%= render 'form', locals: {litter: @litter} %>
+
+<div>
+  <%= link_to "Cancel", litter_path(@litter), class: 'btn btn-outline-secondary' %>
+</div>
