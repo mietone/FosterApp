@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-md navbar-color fixed-top">
-  <%= link_to "Foster App", root_path, class: "navbar-brand" %>
+<nav class="navbar navbar-dark navbar-expand-md navbar-color fixed-top">
+  <%= link_to "Foster App", root_path, class: "navbar-brand pr-3" %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <ul class="navbar-nav mr-auto mt-2">
       <li class="nav-item">
         <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
       </li>
@@ -20,6 +20,13 @@
       <% end %>
     </ul>
 
+    <ul class="navbar-nav ml-auto">
+      <% if user_signed_in? %>
+      <li class="nav-item">
+        <%= link_to "Add Litter", new_litter_path, class: "nav-item nav-link" %>
+      </li>
+      <% end %>
+    </ul>
   </div>
 
 </nav>
