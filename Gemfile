@@ -34,6 +34,9 @@ gem 'simple_form', '~> 4.0', '>= 4.0.1'
 gem 'devise', '~> 4.5'
 gem 'cocoon', '~> 1.2', '>= 1.2.11'
 gem 'carrierwave', '~> 1.2', '>= 1.2.3'
+gem 'omniauth-facebook', '~> 5.0'
+gem 'omniauth-google-oauth2', '~> 0.5.3'
+gem 'figaro', '~> 1.1', '>= 1.1.1'
 
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'
