@@ -20,12 +20,9 @@ $theme-colors: (
 
 #bs-override.bg {
   background-color: #e9effb;
-  padding-top: 3rem;
+  padding-top: 3.5rem;
 }
 
-body {
-  padding-top: 1.5rem;
-}
 
 /* ----cards----- */
 
@@ -33,6 +30,7 @@ body {
 #bs-override h4.card-title a,
 #bs-override h1.display-3,
 #bs-override h4.litter-name,
+#bs-override h2.devise-title,
 #bs-override h2.card-title.boy,
 #bs-override h2.card-title.girl {
   font-family: 'Ubuntu', sans-serif;
@@ -115,3 +113,9 @@ $mynewcolor: #8895b4;
 #bs-override a.nav-link {
   color: #d0d8e8;
 }
+
+#bs-override div.alert.alert-wrapper {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 0px;
+ }
