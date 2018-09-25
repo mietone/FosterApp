@@ -1,0 +1,48 @@
+<%= render 'shared/errors', object: @litter %>
+
+<%= simple_form_for @litter, url: litter_kittens_path, method: :post, html: { multipart: true }  do |f| %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card bg-light border-info">
+
+        <div class="card-header">
+          <div>
+            <h3><%= @litter.name %></h3>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="row">
+            <div class="form-group">
+
+              <div class="d-flex align-items-center">
+                <h3 class="pr-3"><span>Kitten Info</span></h3>
+                <%= f.simple_fields_for :kitten do |kitten| %>
+
+                <%= kitten.hidden_field :user_id, :value => current_user.id %>
+                <%= kitten.input :name,  class: 'form-control' %>
+                <%= kitten.input :color, class: 'form-control' %>
+                <%# kitten.input :sex, as: :radio_buttons, collection: [['Girl', 0] ,['Boy', 1]], checked: (f.object.sex ? 1 : 0), wrapper: :vertical_collection_inline %>
+
+              </div><!--d-flex-->
+            </div><!--form-group-->
+
+            <div class="form-group">
+
+                <p>Upload A Photo</p>
+                <%= kitten.file_field :image, label: "Upload A Photo" %>
+                <%= kitten.hidden_field :image_cache %>
+            </div>
+
+            <% end %>
+          </div><!--row-->
+        </div><!--card-body-->
+
+      </div><!--card-->
+      <%= f.button :submit, class: "btn btn-info btn-lg mt-1 mb-1" %>
+    </div><!--col-md-12-->
+  </div><!--row-->
+
+
+<% end %>
