@@ -2,6 +2,10 @@ class User < ApplicationRecord
   has_many :kittens, inverse_of: :user
   has_many :litters, through: :kittens
   has_many :identities, dependent: :destroy
+
+  validates :username, presence: true
+  validates :username, uniqueness: true, if: -> { self.username.present? }
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -9,7 +13,6 @@ class User < ApplicationRecord
          :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
    def self.create_with_omniauth(info, using_twitter)
-    # TODO: add image: info.image
     user_info = { username: info.name, password: Devise.friendly_token[0,20] }
     using_twitter ? user_info.merge!(nickname: info.nickname) : user_info.merge!(email: info.email)
     create(user_info)
