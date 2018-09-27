@@ -1,4 +1,4 @@
-<%# render 'shared/errors', object: @litter %>
+<%= render 'shared/errors', object: @litter %>
 
 <%= simple_form_for [@litter, @kitten],html: { multipart: true }  do |f| %>
 
@@ -8,29 +8,22 @@
 
         <div class="card-header">
           <div>
-            <h3><%= @litter.name %></h3>
+            <h1 class="litter-name"><%= @litter.name %></h1>
           </div>
         </div>
 
         <div class="card-body">
+          <h3 class="pb-1"> Kitten Info </h3>
           <div class="row">
-            <div class="form-group">
-
-              <div class="d-flex align-items-center">
-                <h3 class="pr-3"><span>Kitten Info</span></h3>
-
-
-                <%= f.hidden_field :user_id, :value => current_user.id %>
-                <%= f.input :name,  class: 'form-control' %>
-                <%= f.input :color, class: 'form-control' %>
-                <%# kitten.input :sex, as: :radio_buttons, collection: [['Girl', 0] ,['Boy', 1]],
-						checked: (f.object.sex ? 1 : 0), wrapper: :vertical_collection_inline %>
-
-              </div><!--d-flex-->
+            <div class="form-group col-md-6">
+              <%= f.hidden_field :user_id, :value => current_user.id %>
+              <%= f.input :name,  class: 'form-control' %>
+              <%= f.input :color, class: 'form-control' %>
+              <%= f.input :sex, as: :radio_buttons, collection: [['Girl', 0] ,['Boy', 1]],
+          					checked: (f.object.sex ? 1 : 0), wrapper: :vertical_collection_inline %>
             </div><!--form-group-->
 
-            <div class="form-group">
-
+            <div class="form-group col-md-6">
                 <p>Upload A Photo</p>
                 <%= f.file_field :image, label: "Upload A Photo" %>
                 <%= f.hidden_field :image_cache %>

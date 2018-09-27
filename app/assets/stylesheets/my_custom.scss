@@ -29,6 +29,7 @@ $theme-colors: (
 #bs-override h1.card-title a,
 #bs-override h4.card-title a,
 #bs-override h1.display-3,
+#bs-override h1.litter-name,
 #bs-override h4.litter-name,
 #bs-override h2.devise-title,
 #bs-override h2.card-title.boy,
@@ -43,6 +44,7 @@ $theme-colors: (
 }
 
 #bs-override h1.display-3,
+#bs-override h1.litter-name,
 #bs-override h4.litter-name {
   color: map-get($theme-colors, "primary");
 }
@@ -118,4 +120,10 @@ $mynewcolor: #8895b4;
   width: 100%;
   margin-top: 10px;
   margin-bottom: 0px;
+ }
+
+ /* ----forms----- */
+
+ #bs-override div .radio_buttons {
+   margin-bottom: 0.5rem;
  }

@@ -19,8 +19,8 @@ class KittensController < ApplicationController
 
   def show
     @litter = @kitten.litter
-
   end
+
 
   private
 
