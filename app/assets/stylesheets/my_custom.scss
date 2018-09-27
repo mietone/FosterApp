@@ -61,7 +61,7 @@ $theme-colors: (
 
 #bs-override h2.card-title.boy {
   color: lightblue;
-  font-size: 60px;
+  font-size: 64px;
 }
 
 #bs-override h2.card-title.girl {
@@ -128,6 +128,6 @@ $mynewcolor: #8895b4;
    margin-bottom: 0.5rem;
  }
 
- input#kitten_image {
+ #bs-override div.choose-button {
    margin-bottom: 2rem;
  }

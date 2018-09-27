@@ -24,10 +24,11 @@
             </div><!--form-group-->
 
             <div class="form-group col-md-6">
+              <div class="choose-button">
                 <p>Upload A Photo</p>
                 <%= f.file_field :image, label: "Upload A Photo" %>
                 <%= f.hidden_field :image_cache %>
-
+              </div>
                 <%= f.input :sex, as: :radio_buttons, collection: [['Girl', 0] ,['Boy', 1]],
                 checked: (f.object.sex ? 1 : 0), wrapper: :vertical_collection_inline %>
             </div>

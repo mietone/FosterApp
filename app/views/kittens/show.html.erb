@@ -1,23 +1,23 @@
 <div class="card bg-light">
   <div class="row">
 
-    <div class="col-lg-7">
-      <%# raise @kitten.inspect %>
+    <div class="col-lg-6">
+      <%#raise @kitten.inspect %>
       <% if @kitten.image.present? %>
         <%= image_tag @kitten.image_url(:full).to_s, class: 'rounded m-2' %>
       <% end %>
     </div>
 
-    <div class="col-lg-5">
+    <div class="col-lg-6">
       <div class="card-body">
-        <h2 class="card-title <%= @kitten.sex ? "boy" : "girl" %>">
+        <h2 class="card-title text-center <%= @kitten.sex ? "boy" : "girl" %>">
             <%= @kitten.name %>
         </h2>
 
         <ul class="list-group list-group-flush mr-4 ml-4">
           <li class="list-group-item"><%= @kitten.color %></li>
           <li class="list-group-item"><%= @kitten.sex ? "boy" : "girl" %></li>
-          <li class="list-group-item"><%# @litter.dob  "days old" %></li>
+          <li class="list-group-item">D.O.B: <%= @kitten.dob %></li>
           <li class="list-group-item">Fostered By: <%= @kitten.user.username %></li>
         </ul>
 

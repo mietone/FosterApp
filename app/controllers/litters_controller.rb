@@ -61,6 +61,7 @@ class LittersController < ApplicationController
         :sex,
         :color,
         :image,
+        :dob,
         :image_cache,
         :remove_image,
         :_destroy
