@@ -2,7 +2,10 @@
   <div class="row">
 
     <div class="col-lg-7">
-      <%= image_tag @kitten.image_url(:full).to_s, class: 'rounded m-2' %>
+      <%# raise @kitten.inspect %>
+      <% if @kitten.image.present? %>
+        <%= image_tag @kitten.image_url(:full).to_s, class: 'rounded m-2' %>
+      <% end %>
     </div>
 
     <div class="col-lg-5">
@@ -14,7 +17,7 @@
         <ul class="list-group list-group-flush mr-4 ml-4">
           <li class="list-group-item"><%= @kitten.color %></li>
           <li class="list-group-item"><%= @kitten.sex ? "boy" : "girl" %></li>
-          <li class="list-group-item"><%# @litter.dob %> days old</li>
+          <li class="list-group-item"><%# @litter.dob  "days old" %></li>
           <li class="list-group-item">Fostered By: <%= @kitten.user.username %></li>
         </ul>
 
@@ -27,7 +30,7 @@
     </div>
   </div>
 
-  <%= link_to "Back", litter_path(@litter.id), class: "btn btn-outline-primary" %>
+  <%= link_to "Back to #{@kitten.litter.name} Litter", litter_path(@litter), class: "btn btn-outline-primary" %>
   <%# link_to "Edit", edit_litter_path, class: "btn btn-default" %>
   <%# link_to "Delete", litter_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
 </div>

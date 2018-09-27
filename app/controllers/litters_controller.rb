@@ -18,6 +18,7 @@ class LittersController < ApplicationController
     @litter = Litter.new(litter_params)
 
     if @litter.save
+      flash[:success] = "Kitten added to #{@litter.name}"
       redirect_to @litter
     else
       render :new

@@ -1,22 +1,25 @@
 class KittensController < ApplicationController
+  before_action :find_litter, only: [:new, :create]
   before_action :find_kitten, only: [:show, :edit, :update, :destroy]
 
   def new
-    @litter = Litter.find(params[:litter_id])
-    @kitten = Kitten.new
+    @kitten = @litter.kittens.build
   end
 
   def create
-    @kitten = Litter.kittens.new(kitten_params)
+    @kitten = @litter.kittens.new(kitten_params)
+    @kitten.user_id = current_user.id
     if @kitten.save
+      flash[:success] = "Kitten added to #{@litter.name}"
       redirect_to litter_kitten_path(@litter, @kitten)
     else
-      redirect_to litter_path(@litter)
+      redirect_to :new
     end
   end
 
   def show
     @litter = @kitten.litter
+
   end
 
   private
@@ -34,6 +37,10 @@ class KittensController < ApplicationController
       :remove_image,
       :_destroy
     )
+  end
+
+  def find_litter
+    @litter = Litter.find(params[:litter_id])
   end
 
   def find_kitten

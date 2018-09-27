@@ -4,4 +4,4 @@
 
 <%= render 'form', locals: {litter: @litter} %>
 
-<%= link_to "Cancel", root_path, class: 'btn btn-outline-secondary' %>
+<%= link_to "Cancel", litter_path(@litter), class: 'btn btn-outline-secondary' %>

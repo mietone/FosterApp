@@ -1,6 +1,6 @@
-<%= render 'shared/errors', object: @litter %>
+<%# render 'shared/errors', object: @litter %>
 
-<%= simple_form_for @litter, url: litter_kittens_path, method: :post, html: { multipart: true }  do |f| %>
+<%= simple_form_for [@litter, @kitten],html: { multipart: true }  do |f| %>
 
   <div class="row">
     <div class="col-md-12">
@@ -18,12 +18,13 @@
 
               <div class="d-flex align-items-center">
                 <h3 class="pr-3"><span>Kitten Info</span></h3>
-                <%= f.simple_fields_for :kitten do |kitten| %>
 
-                <%= kitten.hidden_field :user_id, :value => current_user.id %>
-                <%= kitten.input :name,  class: 'form-control' %>
-                <%= kitten.input :color, class: 'form-control' %>
-                <%# kitten.input :sex, as: :radio_buttons, collection: [['Girl', 0] ,['Boy', 1]], checked: (f.object.sex ? 1 : 0), wrapper: :vertical_collection_inline %>
+
+                <%= f.hidden_field :user_id, :value => current_user.id %>
+                <%= f.input :name,  class: 'form-control' %>
+                <%= f.input :color, class: 'form-control' %>
+                <%# kitten.input :sex, as: :radio_buttons, collection: [['Girl', 0] ,['Boy', 1]],
+						checked: (f.object.sex ? 1 : 0), wrapper: :vertical_collection_inline %>
 
               </div><!--d-flex-->
             </div><!--form-group-->
@@ -31,11 +32,10 @@
             <div class="form-group">
 
                 <p>Upload A Photo</p>
-                <%= kitten.file_field :image, label: "Upload A Photo" %>
-                <%= kitten.hidden_field :image_cache %>
+                <%= f.file_field :image, label: "Upload A Photo" %>
+                <%= f.hidden_field :image_cache %>
             </div>
 
-            <% end %>
           </div><!--row-->
         </div><!--card-body-->
 
