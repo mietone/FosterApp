@@ -19,14 +19,17 @@
               <%= f.hidden_field :user_id, :value => current_user.id %>
               <%= f.input :name,  class: 'form-control' %>
               <%= f.input :color, class: 'form-control' %>
-              <%= f.input :sex, as: :radio_buttons, collection: [['Girl', 0] ,['Boy', 1]],
-          					checked: (f.object.sex ? 1 : 0), wrapper: :vertical_collection_inline %>
+              <p>Date of Birth</p>
+              <%= f.date_field :dob, class: 'form-control' %>
             </div><!--form-group-->
 
             <div class="form-group col-md-6">
                 <p>Upload A Photo</p>
                 <%= f.file_field :image, label: "Upload A Photo" %>
                 <%= f.hidden_field :image_cache %>
+
+                <%= f.input :sex, as: :radio_buttons, collection: [['Girl', 0] ,['Boy', 1]],
+                checked: (f.object.sex ? 1 : 0), wrapper: :vertical_collection_inline %>
             </div>
 
           </div><!--row-->
