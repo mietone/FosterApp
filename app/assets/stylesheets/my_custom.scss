@@ -78,10 +78,6 @@ $theme-colors: (
   background-color: #eff3f7;
 }
 
-#bs-override div.row.bottom-line {
-  border-bottom: 1px solid rgba(0,0,0,.125);
-}
-
 #bs-override div.border-boy {
   border: 1px solid lightblue;
 }
@@ -89,6 +85,15 @@ $theme-colors: (
 #bs-override div.border-girl {
   border: 1px solid pink;
 }
+
+#bs-override div.row.bottom-line {
+  border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+#bs-override span.font-weight-normal {
+  color: black;
+}
+
 
 /* ----buttons----- */
 

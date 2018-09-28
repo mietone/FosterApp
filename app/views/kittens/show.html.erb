@@ -18,7 +18,12 @@
           <li class="list-group-item"><%= @kitten.color %></li>
           <li class="list-group-item"><%= @kitten.sex ? "boy" : "girl" %></li>
           <li class="list-group-item">D.O.B: <%= @kitten.dob %></li>
-          <li class="list-group-item">Fostered By: <%= @kitten.user.username %></li>
+          <li class="list-group-item"><%= age(@kitten.dob) %></li>
+          <h6>
+            <li class="list-group-item text-muted">Fostered By:
+            <span class="font-weight-normal d-inline-block mb-0.5 ml-1"><%= @kitten.user.username %></span>
+            </li>
+          </h6>
         </ul>
 
         <div class="text-center m-4">
