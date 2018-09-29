@@ -13,7 +13,8 @@ class KittensController < ApplicationController
       flash[:success] = "Kitten added to #{@litter.name}"
       redirect_to litter_kitten_path(@litter, @kitten)
     else
-      redirect_to :new
+      flash[:error] = @kitten.errors.full_messages
+      redirect_to :new_litter_kitten
     end
   end
 
