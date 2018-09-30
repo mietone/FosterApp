@@ -23,7 +23,7 @@ class LittersController < ApplicationController
     @litter = Litter.new(litter_params)
 
     if @litter.save
-      flash[:success] = "Kitten added to #{@litter.name}"
+      flash[:success] = "Litter was successfully created."
       redirect_to @litter
     else
       render :new
@@ -35,6 +35,7 @@ class LittersController < ApplicationController
 
   def update
     if @litter.update(litter_params)
+      flash[:notice] = "Litter has been updated."
       redirect_to @litter
     else
       render :edit
@@ -43,6 +44,7 @@ class LittersController < ApplicationController
 
   def destroy
     if @litter.destroy
+      flash[:notice] = "Litter was successfully deleted."
       redirect_to root_path
     else
       render :show

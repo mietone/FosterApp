@@ -10,7 +10,7 @@ class KittensController < ApplicationController
     @kitten = @litter.kittens.new(kitten_params)
     @kitten.user_id = current_user.id
     if @kitten.save
-      flash[:success] = "Kitten added to #{@litter.name}"
+      flash[:success] = "Kitten added to #{@litter.name}."
       redirect_to litter_kitten_path(@litter, @kitten)
     else
       flash[:error] = @kitten.errors.full_messages
