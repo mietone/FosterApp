@@ -8,4 +8,6 @@ class Litter < ApplicationRecord
                                 allow_destroy: true,
                                 reject_if: proc {|att| att['name'].blank? }
 
+  scope :my_litters, ->(owner) { joins(:kittens).where(kittens: {user_id: owner.id}).uniq}
+
 end

@@ -2,7 +2,12 @@ class LittersController < ApplicationController
   before_action :find_litter, only: [:show, :edit, :update, :destroy]
 
   def index
-    @litters = Litter.all.order("created_at DESC")
+    @litters = Litter.all.order("start_date DESC")
+  end
+
+  def my_litters
+    @litters = Litter.all.order("start_date DESC")
+    @my_litters = Litter.my_litters(current_user)
   end
 
   def show
