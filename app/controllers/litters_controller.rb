@@ -7,7 +7,7 @@ class LittersController < ApplicationController
 
   def my_litters
     @litters = Litter.all.order("start_date DESC")
-    @my_litters = Litter.my_litters(current_user)
+    @my_litters = @litters.my_litters(current_user)
   end
 
   def show

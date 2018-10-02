@@ -52,22 +52,22 @@ $theme-colors: (
 #bs-override h4.card-title a.boy {
   color: lightblue;
   font-size: 40px;
-}
+} /* -litter page-- */
 
 #bs-override h4.card-title a.girl {
   color: pink;
   font-size: 40px;
-}
+} /* -litter page-- */
 
 #bs-override h2.card-title.boy {
   color: lightblue;
   font-size: 64px;
-}
+} /* -show page-- */
 
 #bs-override h2.card-title.girl {
   color: pink;
   font-size: 60px;
-}
+} /* -show page-- */
 
 #bs-override li.list-group-item {
   background-color: transparent;
@@ -75,7 +75,7 @@ $theme-colors: (
 
 #bs-override div.card.border-custom {
   border: 1px solid #bca8e0;
-  background-color: #eff3f7;
+  // background-color: #eff3f7;
 }
 
 #bs-override div.border-boy {
@@ -88,6 +88,10 @@ $theme-colors: (
 
 #bs-override div.row.bottom-line {
   border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+#bs-override li.list-group-item {
+  background-color: transparent;
 }
 
 #bs-override span.font-weight-normal {
