@@ -26,6 +26,7 @@ class LittersController < ApplicationController
       flash[:success] = "Litter was successfully created."
       redirect_to @litter
     else
+      flash[:error] = @litter.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -38,6 +39,7 @@ class LittersController < ApplicationController
       flash[:notice] = "Litter has been updated."
       redirect_to @litter
     else
+      flash[:error] = @litter.errors.full_messages.to_sentence
       render :edit
     end
   end

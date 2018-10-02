@@ -2,9 +2,9 @@ class Kitten < ApplicationRecord
   belongs_to :user, inverse_of: :kittens, optional: true
   belongs_to :litter, inverse_of: :kittens, optional: true
 
+  validates :name, presence: true
   validates :name, uniqueness: { scope: :litter_id }
   validate :dob_cannot_be_in_the_future
-  # validates_presence_of :litter
 
   mount_uploader :image, ImageUploader
 

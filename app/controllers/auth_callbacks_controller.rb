@@ -20,7 +20,8 @@ class AuthCallbacksController < ApplicationController
   def handle_user_auth(provider)
     if @user.persisted?
       sign_in_and_redirect @user, :event => :authentication
-      set_flash_message(:notice, :success, :kind => provider) if is_navigational_format?
+      flash[:success] = "You have logged in with #{provider}."
+      # set_flash_message(:notice, :success, :kind => provider) if is_navigational_format?
     else
       session["devise.#{provider}_data"] = request.env["omniauth.auth"]["info"] # Not to overflow default 4kb of cookies
       redirect_to new_user_registration_url

@@ -5,8 +5,7 @@ class Litter < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   accepts_nested_attributes_for :kittens,
-                                allow_destroy: true,
-                                reject_if: proc {|att| att['name'].blank? }
+                                allow_destroy: true
 
   scope :my_litters, ->(owner) { joins(:kittens).where(kittens: {user_id: owner.id}).uniq}
 
