@@ -37,6 +37,7 @@ gem 'carrierwave', '~> 1.2', '>= 1.2.3'
 gem 'omniauth-facebook', '~> 5.0'
 gem 'omniauth-google-oauth2', '~> 0.5.3'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
+gem 'seed_dump'
 
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'

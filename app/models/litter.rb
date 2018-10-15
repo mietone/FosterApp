@@ -7,6 +7,8 @@ class Litter < ApplicationRecord
   accepts_nested_attributes_for :kittens,
                                 allow_destroy: true
 
-  scope :my_litters, ->(owner) { joins(:kittens).where(kittens: {user_id: owner.id}).uniq}
+  scope :my_litters, ->(owner) { joins(:kittens).where(kittens: {user_id: owner.id})}
+
+  scope :with_mom, -> { where(with_mom: true)}
 
 end

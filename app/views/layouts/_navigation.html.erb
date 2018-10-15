@@ -1,5 +1,5 @@
 <nav class="navbar navbar-dark navbar-expand-md navbar-color fixed-top">
-  <%= link_to "Foster App", root_path, class: "navbar-brand pr-3" %>
+  <%= link_to "FosterApp", root_path, class: "navbar-brand pr-3" %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -30,6 +30,9 @@
       <% if user_signed_in? %>
       <li class="nav-item">
         <%= link_to "My Litters", my_litters_litters_path, class: "nav-item nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Litters with Mom", with_mom_litters_path, class: "nav-item nav-link" %>
       </li>
       <li class="nav-item">
         <%= link_to "Add Litter", new_litter_path, class: "nav-item nav-link" %>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :litters do
     collection do
       get :my_litters
+      get :with_mom
     end
     resources :kittens
   end

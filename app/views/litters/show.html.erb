@@ -44,11 +44,7 @@
             <%= image_tag kitten.image_url(:thumb).to_s, class: 'card-img-top' %>
             <div class="card-body">
               <h4 class="card-title">
-                <% if kitten.sex %>
-                  <%= link_to kitten.name, litter_kitten_path(@litter, kitten), class: 'boy' %>
-                <% else %>
-                  <%= link_to kitten.name, litter_kitten_path(@litter, kitten), class: 'girl' %>
-                <% end %>
+                  <%= link_to kitten.name, litter_kitten_path(@litter, kitten), class: "#{kitten.sex ? 'boy' : 'girl'}" %>
               </h4>
             </div>
             <ul class="list-group list-group-flush">
