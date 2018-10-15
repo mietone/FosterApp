@@ -19,7 +19,9 @@
               </div>
               <div class="col-lg-4">
                 <h5 class="text-muted">Fostered: </h5>
-                <%= (@litter.end_date - @litter.start_date).to_i %> days
+                <% if @litter.end_date && @litter.start_date %>
+                  <%= (@litter.end_date - @litter.start_date).to_i %> days
+                <% end %>
               </div>
             </div>
           </li>

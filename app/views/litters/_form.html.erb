@@ -7,7 +7,7 @@
       <div class="card bg-light border-info">
 
         <div class="card-header">
-          <div>
+          <div class="form-group col">
             <h3><%= f.input :name, label: "Litter Name / Litter ID", autofocus: true %></h3>
           </div>
         </div>
@@ -19,6 +19,14 @@
             </div>
             <div class="form-group col">
               <h5 class=""><%= f.label :end_date, "Foster End Date" %><%= f.date_field :end_date, value: f.object.end_date, class: 'form-control' %></h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-4">
+              <h5 class=""><%= f.input :with_mom, as: :radio_buttons, class: 'form-control', wrapper: :vertical_collection_inline %></h5>
+            </div>
+            <div class="form-group col-8">
+              <h5 class=""><%= f.input :mom_name, class: 'form-control' %></h5>
             </div>
           </div>
 
