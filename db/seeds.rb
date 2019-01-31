@@ -30,7 +30,8 @@ Kitten.create!([
   {user_id: 2, litter_id: 5, name: "Porcupine", sex: true, color: "gray", image: "Porcupine2.JPG", dob: nil},
   {user_id: 2, litter_id: 5, name: "Papoose", sex: false, color: "seal point", image: "Papoose1.jpg", dob: nil},
   {user_id: 6, litter_id: 7, name: "Zaba", sex: false, color: "white & gray", image: "Zaba.JPG", dob: "2018-07-06"},
-  {user_id: 6, litter_id: 7, name: "Zam", sex: true, color: "black & white", image: "Zam.JPG", dob: "2018-07-06"}
+  {user_id: 6, litter_id: 7, name: "Zam", sex: true, color: "black & white", image: "Zam.JPG", dob: "2018-07-06"},
+  {user_id: 1, litter_id: 8, name: "Cormorant", sex: true, color: "white & gray", image: "cormorant_01.jpeg", dob: nil}
 ])
 Litter.create!([
   {name: "R8 2018", start_date: "2018-05-06", end_date: "2018-06-13", with_mom: false, mom_name: nil},
@@ -38,5 +39,6 @@ Litter.create!([
   {name: "M21", start_date: "2016-08-09", end_date: "2016-09-03", with_mom: false, mom_name: nil},
   {name: "V18", start_date: "2018-07-01", end_date: "2018-07-31", with_mom: false, mom_name: nil},
   {name: "P41", start_date: "2017-11-27", end_date: "2017-12-24", with_mom: false, mom_name: nil},
-  {name: "Z25 2018", start_date: "2018-08-09", end_date: "2018-10-07", with_mom: false, mom_name: nil}
+  {name: "Z25 2018", start_date: "2018-08-09", end_date: "2018-10-07", with_mom: false, mom_name: nil},
+  {name: "C5 2017", start_date: "2017-08-03", end_date: "2017-08-18", with_mom: true, mom_name: "Chickadee"}
 ])
