@@ -23,7 +23,8 @@ class Litter {
   constructor(obj) {
     debugger
     this.name = obj.name
-    this.kittens = obj.kittens
+    this.color = obj.color
+    this.dob = obj.dob
   }
 }
 
