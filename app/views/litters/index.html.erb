@@ -2,7 +2,7 @@
   <h1 class="display-3 text-muted">List of Litters</h1>
 </div>
 
-<% @litters.in_groups_of(3, false).each do |group| %>
+<% @litters.in_groups_of(3, false).each_with_index do |group, index| %>
   <div class="row">
     <% group.each do |litter| %>
       <div class="col-xs-12 col-md-4 mb-4">
@@ -36,12 +36,15 @@
             <% if litter.users.first == current_user %>
               <%= link_to 'edit', edit_litter_path(litter), class: 'btn btn-outline-primary' %>
             <% end %>
+            <div data-group_id=<%= index %>>
+              <%= index %>
+            </div>
           </div>
         </div>
       </div>
     <% end %>
   </div>
-  <div class="toggle-kittens">
+  <div id='toggle-kittens' data-row_id=<%= index %>>
     <p>Litter details will show here</p>
   </div>
 <% end %>

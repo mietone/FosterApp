@@ -1,35 +1,40 @@
 $(function () {
-  console.log('litters.js is loaded...')
+  console.log('litters.js is loaded...');
+  getKittens();
+});
+
+function getKittens() {
   $("a.btn.btn-outline-primary").on('click', function(e) {
-    e.preventDefault()
+    e.preventDefault();
 
     $.ajax({
       url: this.href,
       method: 'get',
       dataType: 'json'
     }).done(function(response) {
-      console.log("the data is: ", response)
+      console.log("the data is: ", response);
 
-      let getLitter = new Litter(response)
+      let getKitten = new Kitten(response[0]);
 
-      let getLitterHTML = getLitter.litterHTML()
+      let getKittenHTML = getKitten.kittenHTML();
 
-      $('div.toggle-kittens').html(getLitterHTML)
-    })
-  })
-})
+      let term = $('div#toggle-kittens').attr('data-row_id');
+      $('div#toggle-kittens').append(getKittenHTML);
+    });
+  });
+}
 
-class Litter {
+
+class Kitten {
   constructor(obj) {
-    debugger
-    this.name = obj.name
-    this.color = obj.color
-    this.dob = obj.dob
+    this.name = obj.name;
+    this.color = obj.color;
+    this.dob = obj.dob;
   }
 }
 
-Litter.prototype.litterHTML =  function() {
+Kitten.prototype.kittenHTML =  function() {
   return (`
       <p>${this.name}</p>
-    `)
-}
+    `);
+};

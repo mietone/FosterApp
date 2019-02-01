@@ -5,7 +5,7 @@ class LittersController < ApplicationController
     @litters = Litter.all.order("start_date DESC")
     respond_to do |f|
       f.html {render :index}
-      f.json {render json: @litters}
+      # f.json {render json: @litters}
     end
   end
 
