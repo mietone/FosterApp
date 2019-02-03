@@ -14,12 +14,14 @@ function getKittens() {
     }).done(function(response) {
       console.log("the data is: ", response);
 
-      let getKitten = new Kitten(response[0]);
+      response.forEach(function(kitten) {
+        console.log(kitten);
+        let getKitten = new Kitten(kitten);
 
-      let getKittenHTML = getKitten.kittenHTML();
+        let getKittenHTML = getKitten.kittenHTML();
 
-      let term = $('div#toggle-kittens').attr('data-row_id');
-      $('div#toggle-kittens').append(getKittenHTML);
+        $('div#toggle-kittens').append(getKittenHTML);
+      });
     });
   });
 }
@@ -36,5 +38,6 @@ class Kitten {
 Kitten.prototype.kittenHTML =  function() {
   return (`
       <p>${this.name}</p>
+      <p>${this.color}</p>
     `);
 };
