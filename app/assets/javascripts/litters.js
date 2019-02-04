@@ -28,6 +28,7 @@ function getKittens() {
         $clicked.closest('.row').next('div.toggle-kittens').append(getKittenHTML);
       });
     });
+    $('div.toggle-kittens').toggle();
   });
 }
 
