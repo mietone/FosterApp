@@ -6,6 +6,9 @@ $(function () {
 function getKittens() {
   $("a.btn.btn-outline-primary").on('click', function(e) {
     e.preventDefault();
+    $('div.toggle-kittens').html('');
+    $clicked = $(this);
+    // $clicked.addClass("active");
 
     $.ajax({
       url: this.href,
@@ -20,7 +23,9 @@ function getKittens() {
 
         let getKittenHTML = getKitten.kittenHTML();
 
-        $('div#toggle-kittens').append(getKittenHTML);
+        // $(getKittenHTML).insertAfter($(".row"));
+        // $('div.toggle-kittens').append(getKittenHTML);
+        $clicked.closest('.row').next('div.toggle-kittens').append(getKittenHTML);
       });
     });
   });

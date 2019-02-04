@@ -36,7 +36,7 @@
             <% if litter.users.first == current_user %>
               <%= link_to 'edit', edit_litter_path(litter), class: 'btn btn-outline-primary' %>
             <% end %>
-            <div id='data-group' data-group-id=<%= index %>>
+            <div class='data-group' data-group-id=<%= index %>>
               <%= index %>
             </div>
           </div>
@@ -44,7 +44,7 @@
       </div>
     <% end %>
   </div>
-  <div id='toggle-kittens' data-row-id=<%= index %>>
+  <div class='toggle-kittens' data-row-id=<%= index %>>
     <p>Litter details will show here</p>
   </div>
 <% end %>
