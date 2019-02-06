@@ -144,6 +144,6 @@ $mynewcolor: #8895b4;
 
  /* ----toggle----- */
 
- .toggle-kittens {
-  display:none;
+ #bs-override .toggle-kittens.row {
+  display:inline-block;
 }

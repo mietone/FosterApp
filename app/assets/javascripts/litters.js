@@ -28,6 +28,7 @@ function getKittens() {
         $clicked.closest('.row').next('div.toggle-kittens').append(getKittenHTML);
       });
     });
+
     $('div.toggle-kittens').toggle();
   });
 }
@@ -43,7 +44,22 @@ class Kitten {
 
 Kitten.prototype.kittenHTML =  function() {
   return (`
-      <p>${this.name}</p>
-      <p>${this.color}</p>
-    `);
+
+        <div class="col-xs-12 col-md-3 ">
+          <div class="card bg-light border-girl">
+            <img class="card-img-top" src="/uploads/kitten/image/24/thumb_Zaba.JPG">
+            <div class="card-body">
+              <h4 class="card-title">
+                  <a class="girl" href="/litters/<%= litter.id %>/kittens/{{id}}">${this.name}</a>
+              </h4>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">white &amp; gray</li>
+              <li class="list-group-item">girl</li>
+            </ul>
+
+          </div>
+        </div>
+
+  `);
 };
