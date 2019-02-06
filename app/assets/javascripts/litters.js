@@ -7,7 +7,7 @@ function getKittens() {
   $("a.btn.btn-outline-primary").on('click', function(e) {
     e.preventDefault();
     $('div.toggle-kittens').html('');
-    $clicked = $(this);
+    let $clicked = $(this);
     // $clicked.addClass("active");
 
     $.ajax({
@@ -22,14 +22,14 @@ function getKittens() {
         let getKitten = new Kitten(kitten);
 
         let getKittenHTML = getKitten.kittenHTML();
-
-        // $(getKittenHTML).insertAfter($(".row"));
-        // $('div.toggle-kittens').append(getKittenHTML);
-        $clicked.closest('.row').next('div.toggle-kittens').append(getKittenHTML);
+        //
+        // $('div.card.border-custom.toggle').after( $("<div></div>").addClass('toggle-kittens row m-4') );
+        $('div.insert-kittens:first').addClass('toggle-kittens row m-4');
+        $clicked.closest('div.row').next('div.card.border-custom.toggle').find('div.insert-kittens.toggle-kittens').append(getKittenHTML);
       });
     });
 
-    $('div.toggle-kittens').toggle();
+    $('div.card.border-custom.toggle').toggle();
   });
 }
 
