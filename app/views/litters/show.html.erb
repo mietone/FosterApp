@@ -51,7 +51,7 @@
             </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><%= kitten.color %></li>
-              <li class="list-group-item"><%= kitten.sex ? "boy" : "girl" %></li>
+              <li class="list-group-item"><%= kitten.sex ? 'boy' : 'girl' %></li>
             </ul>
             <div class="card-body text-center">
               <%= link_to 'view', litter_kitten_path(@litter, kitten), class: 'btn btn-outline-primary' %>

@@ -22,10 +22,9 @@ function getKittens() {
         let getKitten = new Kitten(kitten);
 
         let getKittenHTML = getKitten.kittenHTML();
-        //
         // $('div.card.border-custom.toggle').after( $("<div></div>").addClass('toggle-kittens row m-4') );
-        $('div.insert-kittens:first').addClass('toggle-kittens row m-4');
-        $clicked.closest('div.row').next('div.card.border-custom.toggle').find('div.insert-kittens.toggle-kittens').append(getKittenHTML);
+        $('div.insert-kittens').addClass('toggle-kittens row m-4');
+        $clicked.closest('div.row').next('div.card.border-custom.toggle').find('div.insert-kittens').append(getKittenHTML);
       });
     });
 
@@ -33,11 +32,14 @@ function getKittens() {
   });
 }
 
-
 class Kitten {
   constructor(obj) {
+    this.id = obj.id;
     this.name = obj.name;
+    this.sex = obj.sex;
     this.color = obj.color;
+    this.litter_id = obj.litter_id;
+    this.image = obj.image;
     this.dob = obj.dob;
   }
 }
@@ -46,16 +48,16 @@ Kitten.prototype.kittenHTML =  function() {
   return (`
 
         <div class="col-xs-12 col-md-3 ">
-          <div class="card bg-light border-girl">
-            <img class="card-img-top" src="/uploads/kitten/image/24/thumb_Zaba.JPG">
+          <div class="card bg-light mb-4 ${this.sex ? 'border-boy' : 'border-girl'} ">
+            <img class="card-img-top" src=${this.image.thumb.url}>
             <div class="card-body">
               <h4 class="card-title">
-                  <a class="girl" href="/litters/<%= litter.id %>/kittens/{{id}}">${this.name}</a>
+                  <a class="${this.sex ? 'boy' : 'girl'}" href="/litters/${this.litter_id}/kittens/${this.id}">${this.name}</a>
               </h4>
             </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">white &amp; gray</li>
-              <li class="list-group-item">girl</li>
+              <li class="list-group-item">${this.sex ? 'boy' : 'girl'}</li>
             </ul>
 
           </div>
