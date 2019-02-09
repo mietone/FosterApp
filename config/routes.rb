@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "auth_callbacks" }
 
   root 'litters#index'
+  get 'litters/:litter_id/kittens/:id/next', to: 'kittens#next'
 
   resources :litters do
     collection do

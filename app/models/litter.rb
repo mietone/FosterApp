@@ -11,4 +11,8 @@ class Litter < ApplicationRecord
 
   scope :with_mom, -> { where(with_mom: true)}
 
+  def next
+    Litter.kittens.where('id > ?', id).first
+  end
+
 end

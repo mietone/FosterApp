@@ -12,6 +12,16 @@ class Kitten < ApplicationRecord
 
   # default_scope { order(created_at: :desc) }
 
+  def self.next(kitten)
+    kitten = where('id > ?', kitten.id).first
+
+    if kitten
+      kitten
+    else
+      Kitten.first
+    end
+  end
+
 private
 
   def dob_cannot_be_in_the_future

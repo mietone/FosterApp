@@ -26,6 +26,12 @@ class KittensController < ApplicationController
     end
   end
 
+  def next
+    @kittens = Kitten.all
+    @next_kitten = @kittens.next(@kitten)
+    render json: @next_kitten
+  end
+
   private
 
   def kitten_params

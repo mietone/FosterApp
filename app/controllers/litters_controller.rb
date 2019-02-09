@@ -1,5 +1,5 @@
 class LittersController < ApplicationController
-  before_action :find_litter, only: [:show, :edit, :update, :destroy]
+  before_action :find_litter, only: [:show, :edit, :update, :destroy, :next_kitten]
 
   def index
     @litters = Litter.all.order("start_date DESC")
