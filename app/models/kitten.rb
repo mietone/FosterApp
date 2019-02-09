@@ -10,6 +10,8 @@ class Kitten < ApplicationRecord
 
   after_destroy :delete_empty_upload_directory
 
+  # default_scope { order(created_at: :desc) }
+
 private
 
   def dob_cannot_be_in_the_future
