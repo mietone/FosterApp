@@ -6,7 +6,7 @@ $(function () {
 function getKittens() {
   $("a.btn.btn-outline-primary").on('click', function(e) {
     e.preventDefault();
-    $('div.toggle-kittens').html('');
+    $('div.insert-kittens').html('');
     let $clicked = $(this);
     // $clicked.addClass("active");
 
@@ -23,7 +23,7 @@ function getKittens() {
 
         let getKittenHTML = getKitten.kittenHTML();
         // $('div.card.border-custom.toggle').after( $("<div></div>").addClass('toggle-kittens row m-4') );
-        $('div.insert-kittens').addClass('toggle-kittens row m-4');
+        $('div.insert-kittens').addClass('row m-4');
         $clicked.closest('div.row').next('div.card.border-custom.toggle').find('div.insert-kittens').append(getKittenHTML);
       });
     });

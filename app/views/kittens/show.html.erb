@@ -31,11 +31,26 @@
 
         </div>
       </div>
-
     </div>
   </div>
 
-  <%= link_to "Back to #{@kitten.litter.name} Litter", litter_path(@litter), class: "btn btn-outline-primary" %>
-  <%# link_to "Edit", edit_litter_path, class: "btn btn-default" %>
-  <%# link_to "Delete", litter_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
+
+  <div class="row adjust-width">
+    <div class="col-xs-12 col-md-6 btn-margin">
+      <button class="btn btn-outline-primary btn-block prev-kitten"> << Previous Kitten </button>
+    </div>
+
+    <div class="col-xs-12 col-md-6 btn-margin">
+     <button class="btn btn-outline-primary btn-block next-kitten"> Next Kitten >> </button>
+    </div>
+  </div>
+
+  <div class="row adjust-width">
+    <%= link_to "Back to #{@kitten.litter.name} Litter", litter_path(@litter), class: "btn btn-outline-primary btn-block" %>
+  </div>
+
+
+    <%# link_to "Edit", edit_litter_path, class: "btn btn-outline-primary" %>
+    <%# link_to "Delete", litter_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-primary" %>
+
 </div>

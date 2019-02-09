@@ -111,6 +111,23 @@ $mynewcolor: #8895b4;
     @include button-outline-variant($mynewcolor, #222222, lighten($mynewcolor,5%), $mynewcolor);
 }
 
+// #bs-override .btn1{
+//
+//   width:100%;
+//   padding:0;
+//   margin:0;
+// }
+
+#bs-override div.btn-margin{
+  padding:0;
+  margin:0;
+}
+
+#bs-override .row.adjust-width{
+  padding:0 2;
+  margin:0;
+}
+
 /* ----navbar----- */
 
 #bs-override .navbar-color {

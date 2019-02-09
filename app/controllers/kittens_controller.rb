@@ -20,6 +20,10 @@ class KittensController < ApplicationController
 
   def show
     @litter = @kitten.litter
+    respond_to do |f|
+      f.html {render :show}
+      f.json {render json: @litter}
+    end
   end
 
 
