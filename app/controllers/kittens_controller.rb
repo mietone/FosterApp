@@ -1,6 +1,6 @@
 class KittensController < ApplicationController
   before_action :find_litter, only: [:new, :create]
-  before_action :find_kitten, only: [:show, :edit, :update, :destroy, :next]
+  before_action :find_kitten, only: [:show, :edit, :update, :destroy, :next, :prev]
 
   def new
     @kitten = @litter.kittens.build
@@ -30,6 +30,12 @@ class KittensController < ApplicationController
     @kittens = Kitten.all
     @next_kitten = @kittens.next(@kitten)
     render json: @next_kitten
+  end
+
+  def prev
+    @kittens = Kitten.all
+    @prev_kitten = @kittens.prev(@kitten)
+    render json: @prev_kitten
   end
 
   private

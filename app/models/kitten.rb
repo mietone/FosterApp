@@ -22,6 +22,16 @@ class Kitten < ApplicationRecord
     end
   end
 
+  def self.prev(kitten)
+    kitten = where('id < ?', kitten.id).last
+
+    if kitten
+      kitten
+    else
+      Kitten.last
+    end
+  end
+
 private
 
   def dob_cannot_be_in_the_future

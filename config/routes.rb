@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   root 'litters#index'
   get 'litters/:litter_id/kittens/:id/next', to: 'kittens#next'
+  get 'litters/:litter_id/kittens/:id/prev', to: 'kittens#prev'
 
   resources :litters do
     collection do
