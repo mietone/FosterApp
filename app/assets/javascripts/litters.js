@@ -1,6 +1,7 @@
 $(function () {
   console.log('litters.js is loaded...');
   getKittens();
+  postNewLitters();
 });
 
 function getKittens() {
@@ -65,3 +66,29 @@ Kitten.prototype.kittenHTML =  function() {
 
   `);
 };
+
+function postNewLitters() {
+  $('#new_litter').on('submit', function(e) {
+    e.preventDefault();
+    url = this.action;
+
+    data = {
+      'authenticity_token': $("input[name='authenticity_token']").val(),
+      'litter': {
+        'name': $("#litter_name").val(),
+        'kitten': {
+          'name': $("#litter_kittens_attributes_0_name").val()
+        }
+      }
+    };
+
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: data,
+      success: function(response) {
+      }
+    });
+
+  });
+}

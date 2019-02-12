@@ -37,11 +37,15 @@ class LittersController < ApplicationController
 
     if @litter.save
       flash[:success] = "Litter was successfully created."
-      redirect_to @litter
     else
       flash[:error] = @litter.errors.full_messages.to_sentence
       render :new
     end
+    respond_to do |format|
+      format.html {redirect_to @litter}
+      format.js
+    end
+
   end
 
   def edit
