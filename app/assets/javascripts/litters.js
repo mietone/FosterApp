@@ -45,24 +45,32 @@ class Kitten {
   }
 }
 
+class User {
+  constructor(obj) {
+    this.id = obj.id;
+    this.username = obj.username;
+    this.email = obj.email;
+  }
+}
+
 Kitten.prototype.kittenHTML =  function() {
   return (`
 
-        <div class="col-xs-12 col-md-3 ">
-          <div class="card bg-light mb-4 ${this.sex ? 'border-boy' : 'border-girl'} ">
-            <img class="card-img-top" src=${this.image.thumb.url}>
-            <div class="card-body">
-              <h4 class="card-title">
-                  <a class="${this.sex ? 'boy' : 'girl'}" href="/litters/${this.litter_id}/kittens/${this.id}">${this.name}</a>
-              </h4>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">white &amp; gray</li>
-              <li class="list-group-item">${this.sex ? 'boy' : 'girl'}</li>
-            </ul>
-
-          </div>
+    <div class="col-xs-12 col-md-3 ">
+      <div class="card bg-light mb-4 ${this.sex ? 'border-boy' : 'border-girl'} ">
+        <img class="card-img-top" src=${this.image.thumb.url}>
+        <div class="card-body">
+          <h4 class="card-title">
+              <a class="${this.sex ? 'boy' : 'girl'}" href="/litters/${this.litter_id}/kittens/${this.id}">${this.name}</a>
+          </h4>
         </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">${this.color}</li>
+          <li class="list-group-item">${this.sex ? 'boy' : 'girl'}</li>
+        </ul>
+
+      </div>
+    </div>
 
   `);
 };
@@ -76,17 +84,24 @@ function postNewLitters() {
       'authenticity_token': $("input[name='authenticity_token']").val(),
       'litter': {
         'name': $("#litter_name").val(),
+        'start_date': $("#litter[start_date]").val(),
+        'end_date': $("#litter[start_date]").val(),
+        'with_mom': $("#litter[with_mom]").val(),
         'kitten': {
-          'name': $("#litter_kittens_attributes_0_name").val()
-        }
-      }
+                  'name': $("#litter_kittens_attributes_0_name").val()
+                  }
+                }
     };
+
+console.log(data);
 
     $.ajax({
       type: "POST",
       url: url,
       data: data,
+      dataType: "json",
       success: function(response) {
+        console.log(response)
       }
     });
 

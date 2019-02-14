@@ -33,19 +33,21 @@ class LittersController < ApplicationController
   end
 
   def create
-    @litter = Litter.new(litter_params)
+    # binding.pry
+    @litter = Litter.create(name: params["litter"]["name"])
+    @kitten = Kitten.new(name: params["litter"]["kitten"]["name"], user_id: current_user.id)
+    @kitten.save
+    @litter.kittens.push(@kitten)
 
-    if @litter.save
-      flash[:success] = "Litter was successfully created."
-    else
-      flash[:error] = @litter.errors.full_messages.to_sentence
-      render :new
-    end
     respond_to do |format|
-      format.html {redirect_to @litter}
-      format.js
+      if @litter.save
+        format.html { redirect_to @litter, success: 'Litter was successfully created.' }
+        format.json { render json: @litter }
+      else
+        format.html { render :new }
+        format.json { render json: @litter.errors, status: :unprocessable_entity }
+      end
     end
-
   end
 
   def edit

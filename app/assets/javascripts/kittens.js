@@ -81,7 +81,7 @@ Kit.prototype.showKittenHTML =  function() {
             </ul>
 
             <div class="text-center m-4">
-              <h4 class="litter-name"><a href="/litters/7">Z25 2018</a></h4>
+              <h4 class="litter-name"><a href="/litters/7">${this.litter_id.name}</a></h4>
 
             </div>
           </div>
@@ -100,7 +100,7 @@ Kit.prototype.showKittenHTML =  function() {
       </div>
 
       <div class="row adjust-width">
-        <a class="btn btn-outline-primary btn-block" href="/litters/7">Back to Z25 2018 Litter</a>
+        <a class="btn btn-outline-primary btn-block" href="/litters/7">Back to ${this.litter_id.name} Litter</a>
       </div>
 
 
