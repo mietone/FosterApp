@@ -78,27 +78,11 @@ Kitten.prototype.kittenHTML =  function() {
 function postNewLitters() {
   $('#new_litter').on('submit', function(e) {
     e.preventDefault();
-    url = this.action;
-
-    data = {
-      'authenticity_token': $("input[name='authenticity_token']").val(),
-      'litter': {
-        'name': $("#litter_name").val(),
-        'start_date': $("#litter[start_date]").val(),
-        'end_date': $("#litter[start_date]").val(),
-        'with_mom': $("#litter[with_mom]").val(),
-        'kitten': {
-                  'name': $("#litter_kittens_attributes_0_name").val()
-                  }
-                }
-    };
-
-console.log(data);
 
     $.ajax({
       type: "POST",
-      url: url,
-      data: data,
+      url: this.action,
+      data: $(this).serialize(),
       dataType: "json",
       success: function(response) {
         console.log(response)
