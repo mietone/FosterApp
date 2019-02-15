@@ -91,3 +91,9 @@ function postNewLitters() {
 
   });
 }
+
+// function uploadImage() {
+//   $('litter_kittens_attributes_0_image').on('click', function() {
+//
+//   })
+// }
