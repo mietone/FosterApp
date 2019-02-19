@@ -1,10 +1,56 @@
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal">x</button>
-  <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+  <h4 class="modal-title" id="myModalLabel">New Litter</h4>
 </div>
+
 <div class="modal-body">
-  *Modal content comes here*
-</div>
-<div class="modal-footer">
-  <button class="btn btn-primary">Save</button>
+
+  <%= render 'shared/errors', object: @kitten %>
+
+  <%= simple_form_for [@litter, @kitten],html: { multipart: true }  do |f| %>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card bg-light border-info">
+
+          <div class="card-header">
+            <div>
+              <h1 class="litter-name"><%= @litter.name %></h1>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <h3 class="pb-1"> Kitten Info </h3>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <%= f.hidden_field :user_id, :value => current_user.id %>
+                <%= f.input :name,  class: 'form-control' %>
+                <%= f.input :color, class: 'form-control' %>
+                <p>Date of Birth</p>
+                <%= f.date_field :dob, class: 'form-control' %>
+              </div><!--form-group-->
+
+              <div class="form-group col-md-6">
+                <div class="choose-button">
+                  <p>Upload A Photo</p>
+                  <%= f.file_field :image, label: "Upload A Photo" %>
+                  <%= f.hidden_field :image_cache %>
+                  <div class="progress-bar" id="progress-bar">
+                    <div class="progress" id="progress"></div>
+                  </div>
+                </div>
+                  <%= f.input :sex, as: :radio_buttons, collection: [['Girl', 0] ,['Boy', 1]],
+                  checked: (f.object.sex ? 1 : 0), wrapper: :vertical_collection_inline %>
+              </div>
+
+            </div><!--row-->
+          </div><!--card-body-->
+
+        </div><!--card-->
+        <%= f.button :submit, class: "btn btn-info btn-lg mt-1 mb-1" %>
+      </div><!--col-md-12-->
+    </div><!--row-->
+
+  <% end %>
+
 </div>
