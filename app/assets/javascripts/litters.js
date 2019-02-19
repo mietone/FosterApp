@@ -1,4 +1,4 @@
-$(function () {
+$(document).on('turbolinks:load', function () {
   console.log('litters.js is loaded...');
   getKittens();
   postNewLitters();
@@ -59,6 +59,7 @@ Kitten.prototype.kittenHTML =  function() {
     <div class="col-xs-12 col-md-3 ">
       <div class="card bg-light mb-4 ${this.sex ? 'border-boy' : 'border-girl'} ">
         <img class="card-img-top" src=${this.image.thumb.url}>
+        <img_tag(${this.image_url})>
         <div class="card-body">
           <h4 class="card-title">
               <a class="${this.sex ? 'boy' : 'girl'}" href="/litters/${this.litter_id}/kittens/${this.id}">${this.name}</a>
@@ -85,15 +86,9 @@ function postNewLitters() {
       data: $(this).serialize(),
       dataType: "json",
       success: function(response) {
-        console.log(response)
+        console.log(response);
       }
     });
 
   });
 }
-
-// function uploadImage() {
-//   $('litter_kittens_attributes_0_image').on('click', function() {
-//
-//   })
-// }

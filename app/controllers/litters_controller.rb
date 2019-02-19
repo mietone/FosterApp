@@ -30,22 +30,31 @@ class LittersController < ApplicationController
   def new
     @litter = Litter.new
     @litter.kittens.build(user_id: current_user.id)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
-    binding.pry
+    # result = Cloudinary::Uploader.upload(
+    #   params["litter"]["kittens_attributes"][0]["image"],
+    #   :resource_type => :image
+    # )
+    #
+    # @kitten = Kitten.new(url: result["url"])
+    # binding.pry
     # @litter = Litter.create(name: params["litter"]["name"])
     # @kitten = Kitten.new(name: params["litter"]["kitten"]["name"], user_id: current_user.id)
     # @kitten.save
     # @litter.kittens.push(@kitten)
     @litter = Litter.new(litter_params)
 
-
     respond_to do |format|
       if @litter.save
         # render 'litters/input.html.erb', :layout => false
         format.html { redirect_to @litter, success: 'Litter was successfully created.' }
-        format.json { render json: @litter }
+        format.json { render json: @litter, success: 'Litter was successfully created.' }
       else
         format.html { render :new }
         format.json { render json: @litter.errors, status: :unprocessable_entity }

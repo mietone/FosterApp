@@ -1,3 +1,15 @@
+<!-- Modal -->
+<%= link_to 'Add Litter', new_litter_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn btn-primary btn-lg'}  %>
+
+<div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>
+
+<!-- End of Modal -->
+
+
 <div class="pb-1 mt-5">
   <h1 class="display-3 text-muted">List of Litters</h1>
 </div>

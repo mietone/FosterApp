@@ -23,7 +23,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   process :convert => 'png'
-  process :tags => ['post_picture']
+  process :tags => ['kitten_picture']
 
   # Process files as they are uploaded:
   # process scale: [200, 300]
@@ -46,6 +46,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   version :full do
+    eager
     process resize_to_limit: [500, 500]
   end
 
