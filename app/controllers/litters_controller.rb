@@ -3,9 +3,9 @@ class LittersController < ApplicationController
 
   def index
     @litters = Litter.all.order("start_date DESC")
-    respond_to do |f|
-      f.html {render :index}
-      f.json {render json: @litters}
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render json: @litters}
     end
   end
 
@@ -21,9 +21,9 @@ class LittersController < ApplicationController
 
   def show
     @kittens = @litter.kittens
-    respond_to do |f|
-      f.html {render :show}
-      f.json {render json: @kittens}
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @kittens}
     end
   end
 

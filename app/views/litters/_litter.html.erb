@@ -1,0 +1,36 @@
+<div class="col-xs-12 col-md-4 mb-4 insert-litter"">
+  <div class="card border-custom">
+    <div class="card-body">
+      <h1 class="card-title">
+        <%= link_to litter.name, litter_path(litter) %>
+      </h1>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        From: <%= litter.start_date %> <br>
+        To: <%= litter.end_date %>
+      </li>
+      <li class="list-group-item">
+        <% if litter.end_date && litter.start_date %>
+          <%= (litter.end_date - litter.start_date).to_i %> days
+        <% end %>
+      </li>
+      <li class="list-group-item">
+          <%= pluralize(litter.kittens.size, 'kitten') %>
+      </li>
+      <% if litter.with_mom %>
+        <li class="list-group-item">
+          Mom: <%= litter.mom_name %>
+        </li>
+      <% end %>
+    </ul>
+    <div class="card-body text-center">
+      <%= link_to 'view', litter_path(litter), class: 'btn btn-outline-primary' %>
+      <% if litter.users.first == current_user %>
+        <%= link_to 'edit', edit_litter_path(litter), class: 'btn btn-outline-primary' %>
+      <% end %>
+      <div class='data-group' data-group-id=<%= index %>>
+      </div>
+    </div>
+  </div>
+</div>

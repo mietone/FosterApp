@@ -2,6 +2,8 @@ $(document).on('turbolinks:load', function () {
   console.log('litters.js is loaded...');
   getKittens();
   postNewLitters();
+  loadLitters();
+
 });
 
 function getKittens() {
@@ -13,7 +15,7 @@ function getKittens() {
 
     $.ajax({
       url: this.href,
-      method: 'get',
+      method: 'GET',
       dataType: 'json'
     }).done(function(response) {
       console.log("the data is: ", response);
@@ -32,6 +34,34 @@ function getKittens() {
     $('div.card.border-custom.toggle').toggle();
   });
 }
+
+function loadLitters() {
+  $('a.nav-link.load_litters').on('click', function(e) {
+    e.preventDefault();
+
+    if ( $('div#litters_container').css('visibility') == 'hidden')
+      $('a.nav-link.load_litters').css('visibility', 'visible');
+    else
+      $('a.nav-link.load_litters').css('visibility', 'hidden');
+
+    $.ajax({
+      url: this.href,
+      method: 'GET',
+      dataType: 'json'
+    }).done(function(data){
+      console.log("load_litters data is: ", data);
+
+      $.each(data, function(key, value) {
+        // console.log(value.name);
+        $('div#litters_container').val("");
+        $('div#litters_container').append('<div style="display:inline;">' + value.name + '</div><br />');
+      });
+
+    });
+  });
+}
+
+
 
 class Kitten {
   constructor(obj) {
