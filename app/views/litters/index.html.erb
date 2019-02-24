@@ -16,7 +16,7 @@
   <h1 class="display-3 text-muted">List of Litters</h1>
 </div>
 
-<div id="litters_container">
+<div id="litters_container" class="row">
 
 </div>
 
@@ -25,9 +25,31 @@
 <!-- template -->
 <script id="litter-template" type="text/x-handlebars-template">
 
-<div>
-        <a href="/litters/{{id}}">{{name}}</a>
-
-</div>
+  <div class="col-xs-12 col-md-4 mb-4 insert-litter">
+    <div class="card border-custom">
+      <div class="card-body">
+        <h1 class="card-title">
+          <a href="/litters/{{id}}">{{name}}</a>
+        </h1>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          From: {{start_date}} <br>
+          To: {{end_date}}
+        </li>
+        <li class="list-group-item">
+            age
+        </li>
+        <li class="list-group-item">
+            number of kitten(s)
+        </li>
+      </ul>
+      <div class="card-body text-center">
+        <a class="btn btn-outline-primary" href="/litters/{{id}}">view</a>
+        <div class="data-group" data-group-id="{{id}}">
+        </div>
+      </div>
+    </div>
+  </div>
 
 </script>
