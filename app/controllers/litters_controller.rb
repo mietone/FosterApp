@@ -37,11 +37,6 @@ class LittersController < ApplicationController
   end
 
   def create
-    # result = Cloudinary::Uploader.upload(
-    #   params["litter"]["kittens_attributes"][0]["image"],
-    #   :resource_type => :image
-    # )
-    #
     # @kitten = Kitten.new(url: result["url"])
     # binding.pry
     # @litter = Litter.create(name: params["litter"]["name"])

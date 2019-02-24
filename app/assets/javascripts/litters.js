@@ -3,8 +3,42 @@ $(document).on('turbolinks:load', function () {
   getKittens();
   postNewLitters();
   loadLitters();
-
 });
+
+
+class Litter {
+  constructor(obj) {
+    this.id = obj.id;
+    this.name = obj.name;
+    this.start_date = obj.start_date;
+    this.end_date = obj.end_date;
+    this.with_mom = obj.with_mom;
+    this.mom_name = obj.mom_name;
+  }
+}
+
+class Kitten {
+  constructor(obj) {
+    this.id = obj.id;
+    this.user_id = obj.user_id;
+    this.litter_id = obj.litter_id;
+    this.name = obj.name;
+    this.sex = obj.sex;
+    this.color = obj.color;
+    this.image = obj.image;
+    this.dob = obj.dob;
+    this.image = obj.image;
+  }
+}
+
+class User {
+  constructor(obj) {
+    this.id = obj.id;
+    this.username = obj.username;
+    this.email = obj.email;
+  }
+}
+
 
 function getKittens() {
   $("a.btn.btn-outline-primary").on('click', function(e) {
@@ -39,10 +73,8 @@ function loadLitters() {
   $('a.nav-link.load_litters').on('click', function(e) {
     e.preventDefault();
 
-    if ( $('div#litters_container').css('visibility') == 'hidden')
-      $('a.nav-link.load_litters').css('visibility', 'visible');
-    else
-      $('a.nav-link.load_litters').css('visibility', 'hidden');
+    // show or hide 'Show All Litters'
+    $('a.nav-link.load_litters').css('visibility', $('div#litters_container').css('visibility') == 'hidden' ? 'visible' : 'hidden');
 
     $.ajax({
       url: this.href,
@@ -51,37 +83,51 @@ function loadLitters() {
     }).done(function(data){
       console.log("load_litters data is: ", data);
 
-      $.each(data, function(key, value) {
-        // console.log(value.name);
-        $('div#litters_container').val("");
-        $('div#litters_container').append('<div style="display:inline;">' + value.name + '</div><br />');
+      data.forEach(function(litter) {
+        let getLitter = new Litter(litter);
+        let litterCard = getLitter.renderCard();
+        $('div#litters_container').append(litterCard);
       });
 
+
+
+      // $.each(data, function(key, value) {
+      //   $('div#litters_container').val("");
+      //   $('div#litters_container').append('<div style="display:inline;">' + value.name + '</div><br />');
+      // });
     });
   });
 }
 
 
+function postNewLitters() {
+  $('#new_litter').on('submit', function(e) {
+    e.preventDefault();
 
-class Kitten {
-  constructor(obj) {
-    this.id = obj.id;
-    this.name = obj.name;
-    this.sex = obj.sex;
-    this.color = obj.color;
-    this.litter_id = obj.litter_id;
-    this.image = obj.image;
-    this.dob = obj.dob;
-  }
+    $.ajax({
+      type: "POST",
+      url: this.action,
+      data: $(this).serialize(),
+      dataType: "json",
+      success: function(response) {
+        console.log(response);
+      }
+    });
+
+  });
 }
 
-class User {
-  constructor(obj) {
-    this.id = obj.id;
-    this.username = obj.username;
-    this.email = obj.email;
-  }
-}
+
+$(function() {
+  Litter.templateSource = $('#litter-template').html();
+  Litter.template = Handlebars.compile(Litter.templateSource);
+});
+
+
+Litter.prototype.renderCard = function() {
+  return Litter.template(this);
+};
+
 
 Kitten.prototype.kittenHTML =  function() {
   return (`
@@ -105,20 +151,3 @@ Kitten.prototype.kittenHTML =  function() {
 
   `);
 };
-
-function postNewLitters() {
-  $('#new_litter').on('submit', function(e) {
-    e.preventDefault();
-
-    $.ajax({
-      type: "POST",
-      url: this.action,
-      data: $(this).serialize(),
-      dataType: "json",
-      success: function(response) {
-        console.log(response);
-      }
-    });
-
-  });
-}

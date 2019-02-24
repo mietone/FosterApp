@@ -17,4 +17,5 @@
 //= require bootstrap-sprockets
 //= require cocoon
 //= require activestorage
+//= require handlebars-v4.1.0
 //= require_tree .
