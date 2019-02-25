@@ -27,6 +27,9 @@
     </ul>
 
     <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <%= link_to "Show All Litters", litters_path, class: "nav-link load_litters" %>
+      </li>
       <% if user_signed_in? %>
         <li class="nav-item">
           <%= link_to "My Litters", my_litters_litters_path, class: "nav-item nav-link" %>
@@ -36,10 +39,6 @@
         </li>
         <li class="nav-item">
           <%= link_to "Add Litter", new_litter_path, class: "nav-item nav-link" %>
-        </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to "Show All Litters", litters_path, class: "nav-link load_litters" %>
         </li>
       <% end %>
     </ul>

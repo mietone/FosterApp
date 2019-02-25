@@ -10,10 +10,12 @@ class Litter {
   constructor(obj) {
     this.id = obj.id;
     this.name = obj.name;
+    this.kittens = obj.kittens;
     this.start_date = obj.start_date;
     this.end_date = obj.end_date;
     this.with_mom = obj.with_mom;
     this.mom_name = obj.mom_name;
+    this.users = obj.users;
   }
 }
 
@@ -118,6 +120,7 @@ function postNewLitters() {
 }
 
 
+
 $(function() {
   Litter.templateSource = $('#litter-template').html();
   Litter.template = Handlebars.compile(Litter.templateSource);
@@ -151,3 +154,93 @@ Kitten.prototype.kittenHTML =  function() {
 
   `);
 };
+
+
+Handlebars.registerHelper('getAge', function(dateString) {
+  var now = new Date();
+  var today = new Date(now.getYear(),now.getMonth(),now.getDate());
+
+  var yearNow = now.getYear();
+  var monthNow = now.getMonth();
+  var dateNow = now.getDate();
+
+  var dob = new Date(dateString);
+
+  var yearDob = dob.getYear();
+  var monthDob = dob.getMonth();
+  var dateDob = dob.getDate();
+  var age = {};
+  var ageString = "";
+  var yearString = "";
+  var monthString = "";
+  var dayString = "";
+
+
+  yearAge = yearNow - yearDob;
+
+  if (monthNow >= monthDob)
+    var monthAge = monthNow - monthDob;
+  else {
+    yearAge--;
+    var monthAge = 12 + monthNow -monthDob;
+  }
+
+  if (dateNow >= dateDob)
+    var dateAge = dateNow - dateDob;
+  else {
+    monthAge--;
+    var dateAge = 31 + dateNow - dateDob;
+
+    if (monthAge < 0) {
+      monthAge = 11;
+      yearAge--;
+    }
+  }
+
+  age = {
+      years: yearAge,
+      months: monthAge,
+      days: dateAge
+      };
+
+  if ( age.years > 1 ) yearString = " years";
+  else yearString = " year";
+  if ( age.months> 1 ) monthString = " months";
+  else monthString = " month";
+  if ( age.days > 1 ) dayString = " days";
+  else dayString = " day";
+
+
+  if ( (age.years > 0) && (age.months > 0) && (age.days > 0) )
+    ageString = age.years + yearString + ", " + age.months + monthString + ", and " + age.days + dayString + " old.";
+  else if ( (age.years == 0) && (age.months == 0) && (age.days > 0) )
+    ageString = "Only " + age.days + dayString + " old!";
+  else if ( (age.years > 0) && (age.months == 0) && (age.days == 0) )
+    ageString = age.years + yearString + " old. Happy Birthday!!";
+  else if ( (age.years > 0) && (age.months > 0) && (age.days == 0) )
+    ageString = age.years + yearString + " and " + age.months + monthString + " old.";
+  else if ( (age.years == 0) && (age.months > 0) && (age.days > 0) )
+    ageString = age.months + monthString + " and " + age.days + dayString + " old.";
+  else if ( (age.years > 0) && (age.months == 0) && (age.days > 0) )
+    ageString = age.years + yearString + " and " + age.days + dayString + " old.";
+  else if ( (age.years == 0) && (age.months > 0) && (age.days == 0) )
+    ageString = age.months + monthString + " old.";
+  else ageString = "Oops! Could not calculate age!";
+
+  return ageString;
+});
+
+
+Handlebars.registerHelper('plural', function(number, text) {
+	var singular = number === 1;
+	// If no text parameter was given, just return a conditional s.
+	if ( typeof text !== 'string' ) return singular ? '' : 's';
+	// Split with regex into group1/group2 or group1(group3)
+	var match = text.match( /^([^()\/]+)(?:\/(.+))?(?:\((\w+)\))?/ );
+	// If no match, just append a conditional s.
+	if ( !match ) return text + ( singular ? '' : 's' );
+	// We have a good match, so fire away
+	return singular && match[1] // Singular case
+		|| match[2] // Plural case: 'bagel/bagels' --> bagels
+		|| match[1] + ( match[3] || 's' ); // Plural case: 'bagel(s)' or 'bagel' --> bagels
+});
