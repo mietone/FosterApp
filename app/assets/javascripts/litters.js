@@ -104,10 +104,11 @@ function postNewLitters() {
       url: this.action,
       data: $(this).serialize(),
       dataType: "json"
-    }).done(function(response) {
-
-      console.log(response)
-    })
+    }).done(function(litter) {
+      let getLitter = new Litter(litter);
+      let litterCard = getLitter.renderCard();
+      $('div#litters_container').append(litterCard);
+    });
 
   });
 }
