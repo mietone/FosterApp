@@ -42,25 +42,6 @@ class User {
 }
 
 
-function postNewLitters() {
-  $('#new_litter').on('submit', function(e) {
-    e.preventDefault();
-    debugger
-
-    $.ajax({
-      type: "POST",
-      url: this.action,
-      data: $(this).serialize(),
-      dataType: "json"
-    })
-    console.log(this.action)
-    console.log(data)
-
-  });
-}
-
-
-
 function getKittens() {
   $("a.btn.btn-outline-primary").on('click', function(e) {
     e.preventDefault();
@@ -114,7 +95,22 @@ function loadLitters() {
   });
 }
 
+function postNewLitters() {
+  $('body').on('submit', '#new_litter', function(e) {
+    e.preventDefault();
 
+    $.ajax({
+      type: "POST",
+      url: this.action,
+      data: $(this).serialize(),
+      dataType: "json"
+    }).done(function(response) {
+
+      console.log(response)
+    })
+
+  });
+}
 
 $(function() {
   Litter.templateSource = $('#litter-template').html();
