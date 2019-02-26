@@ -107,9 +107,9 @@ function postNewLitters() {
     }).done(function(litter) {
       let getLitter = new Litter(litter);
       let litterCard = getLitter.renderCard();
-      $('div#litters_container').append(litterCard);
+      $('div#litters_container').prepend(litterCard);
     });
-
+    $('#modal-window').modal( 'hide');
   });
 }
 
