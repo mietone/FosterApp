@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function () {
   console.log('litters.js is loaded...');
-  getKittens();
+  viewSingleLitter();
   postNewLitters();
   loadLitters();
 });
@@ -41,9 +41,33 @@ class User {
   }
 }
 
+function viewSingleLitter() {
+  $('body').on('click', '.modalButton', function(e) {
+    e.preventDefault();
+    url = "/litters/" + $(this).data("name");
+
+    $.ajax({
+      url: url,
+      method: 'GET',
+      dataType: 'json'
+    }).done(function(response) {
+      console.log("data from view click", response);
+
+      $(".modal-body").html("");
+      response.forEach(function(kitten) {
+        let getKitten = new Kitten(kitten);
+        let getKittenHTML = getKitten.kittenHTML();
+
+        $(".modal-body").append(getKittenHTML);
+        $('#myModal').modal('show');
+      });
+
+    });
+  });
+}
 
 function getKittens() {
-  $("a.btn.btn-outline-primary").on('click', function(e) {
+  $('body').on('click', 'a.btn.btn-outline-primary', function(e) {
     e.preventDefault();
     $('div.insert-kittens').html('');
     let $clicked = $(this);
@@ -59,7 +83,6 @@ function getKittens() {
       response.forEach(function(kitten) {
         console.log(kitten);
         let getKitten = new Kitten(kitten);
-
         let getKittenHTML = getKitten.kittenHTML();
         // $('div.card.border-custom.toggle').after( $("<div></div>").addClass('toggle-kittens row m-4') );
         $('div.insert-kittens').addClass('row m-4');
