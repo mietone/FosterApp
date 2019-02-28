@@ -3,6 +3,9 @@ $(document).on('turbolinks:load', function () {
   viewSingleLitter();
   postNewLitters();
   loadLitters();
+  uploadImage();
+  Litter.templateSource = $('#litter-template').html();
+  Litter.template = Handlebars.compile(Litter.templateSource);
 });
 
 
@@ -42,7 +45,7 @@ class User {
 }
 
 function viewSingleLitter() {
-  $('body').on('click', '.modalButton', function(e) {
+  $('body').on('click', 'button.modalButton', function(e) {
     e.preventDefault();
     url = "/litters/" + $(this).data("name");
 
@@ -66,33 +69,6 @@ function viewSingleLitter() {
   });
 }
 
-function getKittens() {
-  $('body').on('click', 'a.btn.btn-outline-primary', function(e) {
-    e.preventDefault();
-    $('div.insert-kittens').html('');
-    let $clicked = $(this);
-    // $clicked.addClass("active");
-
-    $.ajax({
-      url: this.href,
-      method: 'GET',
-      dataType: 'json'
-    }).done(function(response) {
-      console.log("the data is: ", response);
-
-      response.forEach(function(kitten) {
-        console.log(kitten);
-        let getKitten = new Kitten(kitten);
-        let getKittenHTML = getKitten.kittenHTML();
-        // $('div.card.border-custom.toggle').after( $("<div></div>").addClass('toggle-kittens row m-4') );
-        $('div.insert-kittens').addClass('row m-4');
-        $clicked.closest('div.row').next('div.card.border-custom.toggle').find('div.insert-kittens').append(getKittenHTML);
-      });
-    });
-
-    $('div.card.border-custom.toggle').toggle();
-  });
-}
 
 function loadLitters() {
   $('a.nav-link.load_litters').on('click', function(e) {
@@ -136,27 +112,25 @@ function postNewLitters() {
   });
 }
 
-$(function() {
-  Litter.templateSource = $('#litter-template').html();
-  Litter.template = Handlebars.compile(Litter.templateSource);
-});
-
-
 Litter.prototype.renderCard = function() {
   return Litter.template(this);
 };
 
 
-Kitten.prototype.kittenHTML =  function() {
+Kitten.prototype.kittenHTML = function() {
   return (`
 
-    <div class="col-xs-12 col-md-3 ">
+    <div class="col-xs-12 col-md-4 ">
       <div class="card bg-light mb-4 ${this.sex ? 'border-boy' : 'border-girl'} ">
-        <img class="card-img-top" src=${this.image.thumb.url}>
+        <img class="card-img-top" id="img-preview">
+        <label class="file-upload-container" id="file-upload">
+            <input id="file-upload" type="file">
+            Select an Image
+        </label>
         <img_tag(${this.image_url})>
         <div class="card-body">
           <h4 class="card-title">
-              <a class="${this.sex ? 'boy' : 'girl'}" href="/litters/${this.litter_id}/kittens/${this.id}">${this.name}</a>
+              <a class="kitten-link ${this.sex ? 'boy' : 'girl'}" href="/litters/${this.litter_id}/kittens/${this.id}">${this.name}</a>
           </h4>
         </div>
         <ul class="list-group list-group-flush">
@@ -169,6 +143,38 @@ Kitten.prototype.kittenHTML =  function() {
 
   `);
 };
+
+
+
+const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dwewmxnvd/upload";
+const CLOUDINARY_UPLOAD_PRESET = "full_500";
+
+function uploadImage() {
+  $('body').on('change', "#file-upload", function(event) {
+    let file = event.target.files[0];
+    let formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+
+    $.ajax({
+      url: CLOUDINARY_URL,
+      method: 'POST',
+      processData: false,
+      contentType: false,
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      data: formData
+    }).done(function(res) {
+      $("img-preview").src = res.secure_url;
+      console.log(res.secure_url);
+    });
+
+    event.preventDefault();
+  });
+}
+
+
 
 
 
