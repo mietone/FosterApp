@@ -33,7 +33,7 @@
               <div class="form-group col-md-6">
                 <div class="choose-button">
                   <p>Upload A Photo</p>
-                  <%= f.file_field :image, label: "Upload A Photo" %>
+                  <%= f.file_field :image, label: "Upload A Photo", :input_html => { :id => 'file-upload' } %>
                   <%= f.hidden_field :image_cache %>
                   <div class="progress-bar" id="progress-bar">
                     <div class="progress" id="progress"></div>

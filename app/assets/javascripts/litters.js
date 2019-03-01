@@ -94,6 +94,7 @@ function loadLitters() {
   });
 }
 
+
 function postNewLitters() {
   $('body').on('submit', '#new_litter', function(e) {
     e.preventDefault();
@@ -123,9 +124,9 @@ Kitten.prototype.kittenHTML = function() {
     <div class="col-xs-12 col-md-4 ">
       <div class="card bg-light mb-4 ${this.sex ? 'border-boy' : 'border-girl'} ">
         <img class="card-img-top" id="img-preview">
-        <label class="file-upload-container" id="file-upload">
+        <label class="file-upload-container">
             <input id="file-upload" type="file">
-            Select an Image
+            Upload An Image
         </label>
         <img_tag(${this.image_url})>
         <div class="card-body">
