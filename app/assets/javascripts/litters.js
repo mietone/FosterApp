@@ -48,17 +48,26 @@ class User {
 function viewSingleKitten() {
   $('body').on('click', 'a.kitten-link', function(e) {
     e.preventDefault();
+    url = this.href
 
     $.ajax({
-      url: this.href,
+      url: url,
       method: 'GET',
       dataType: 'json'
-    }).done(function(response) {
-      kittenName = response.name
+    }).done(function(data) {
+      litter = data;
+      console.log("url is:", url)
+      kitten = litter.kittens[0];
+      console.log("here is the kitten data:", kitten)
+
+
+      let source = $('#kitten-template').html();
+      let template = Handlebars.compile(source)
+      let kitCardHtml = template(litter)
 
       $(".modal-body").html("");
 
-        $(".modal-body").append(kittenName);
+        $(".modal-body").html(kitCardHtml);
         $('#myModal').modal('show');
     })
   })
@@ -195,11 +204,6 @@ function uploadImage() {
     event.preventDefault();
   });
 }
-
-
-
-
-
 
 
 Handlebars.registerHelper('plural', function(number, text) {

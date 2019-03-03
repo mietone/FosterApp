@@ -67,3 +67,39 @@
   </div>
 
 </script>
+
+<script id="kitten-template" type="text/x-handlebars-template">
+
+  <div class="card bg-light showKitten">
+    <div class="row">
+
+      <div class="col-lg-6">
+        <%#raise @kitten.inspect %>
+        <%# if @kitten.image.present? %>
+          <%#= image_tag @kitten.image_url(:full).to_s, class: 'rounded m-2' %>
+        <%# end %>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card-body">
+          <h2 class="card-title text-center">
+            Litter Name: {{name}}
+            <div class="">
+
+              Kitten Name:
+              {{#each kittens}}
+                {{this.name}}
+              {{/each}}
+            </div>
+
+          </h2>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</script>
