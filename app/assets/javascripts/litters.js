@@ -1,5 +1,6 @@
 $(document).on('turbolinks:load', function () {
   console.log('litters.js is loaded...');
+  viewSingleKitten();
   viewSingleLitter();
   postNewLitters();
   loadLitters();
@@ -43,6 +44,26 @@ class User {
     this.email = obj.email;
   }
 }
+
+function viewSingleKitten() {
+  $('body').on('click', 'a.kitten-link', function(e) {
+    e.preventDefault();
+
+    $.ajax({
+      url: this.href,
+      method: 'GET',
+      dataType: 'json'
+    }).done(function(response) {
+      kittenName = response.name
+
+      $(".modal-body").html("");
+
+        $(".modal-body").append(kittenName);
+        $('#myModal').modal('show');
+    })
+  })
+}
+
 
 function viewSingleLitter() {
   $('body').on('click', 'button.modalButton', function(e) {
