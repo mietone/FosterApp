@@ -48,17 +48,20 @@ class User {
 function viewSingleKitten() {
   $('body').on('click', 'a.kitten-link', function(e) {
     e.preventDefault();
-    url = this.href
-
+    url = this.href;
+    console.log("URL is: ", url)
     $.ajax({
       url: url,
       method: 'GET',
       dataType: 'json'
     }).done(function(data) {
       litter = data;
-      console.log("url is:", url)
-      kitten = litter.kittens[0];
-      console.log("here is the kitten data:", kitten)
+      console.log("DATA is: ", litter)
+      let pathArray = url.split('/');
+      let litterId = pathArray[4];
+      let kittenId = pathArray[6];
+      console.log("litter_ID is:", litterId)
+      console.log("kitten_ID is:", kittenId)
 
 
       let source = $('#kitten-template').html();
@@ -67,8 +70,8 @@ function viewSingleKitten() {
 
       $(".modal-body").html("");
 
-        $(".modal-body").html(kitCardHtml);
-        $('#myModal').modal('show');
+      $(".modal-body").html(kitCardHtml);
+      $('#myModal').modal('show');
     })
   })
 }
@@ -84,7 +87,7 @@ function viewSingleLitter() {
       method: 'GET',
       dataType: 'json'
     }).done(function(response) {
-      console.log("data from view click", response);
+      // console.log("data from view click", response);
 
       $(".modal-body").html("");
       response.forEach(function(kitten) {
