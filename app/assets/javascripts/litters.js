@@ -56,13 +56,15 @@ function viewSingleKitten() {
       dataType: 'json'
     }).done(function(data) {
       litter = data;
-      console.log("DATA is: ", litter)
       let pathArray = url.split('/');
       let litterId = pathArray[4];
       let kittenId = pathArray[6];
       console.log("litter_ID is:", litterId)
       console.log("kitten_ID is:", kittenId)
 
+      // selectedKitten = litter['kittens'][]['id']
+      //
+      // console.log("WHAT IS DATA.NAME: ", selectedKitten)
 
       let source = $('#kitten-template').html();
       let template = Handlebars.compile(source)

@@ -70,34 +70,54 @@
 
 <script id="kitten-template" type="text/x-handlebars-template">
 
-  <div class="card bg-light showKitten">
+  <div class="card bg-light col-lg-12 showKitten">
     <div class="row">
 
       <div class="col-lg-6">
-        <%#raise @kitten.inspect %>
-        <%# if @kitten.image.present? %>
-          <%#= image_tag @kitten.image_url(:full).to_s, class: 'rounded m-2' %>
-        <%# end %>
       </div>
 
       <div class="col-lg-6">
         <div class="card-body">
-          <h2 class="card-title text-center">
-            Litter Name: {{name}}
-            <div class="">
-
-              Kitten Name:
-              {{#each kittens}}
-                {{this.name}}
-              {{/each}}
-            </div>
+          <h2 class="card-title text-center boy">
 
           </h2>
 
+          <ul class="list-group list-group-flush mr-4 ml-4">
+            <li class="list-group-item">{{name}}</li>
+            <li class="list-group-item">{{sex}}</li>
+            <li class="list-group-item">D.O.B: </li>
+            <li class="list-group-item">n/a</li>
+            <h6>
+              <li class="list-group-item text-muted">Fostered By:
+              <span class="font-weight-normal d-inline-block mb-0.5 ml-1">{{user.id.name}}</span>
+              </li>
+            </h6>
+          </ul>
 
+          <div class="text-center m-4">
+            <h4 class="litter-name"><a href="/litters/2">{{name}}</a></h4>
+
+          </div>
         </div>
       </div>
     </div>
+
+
+    <div class="row adjust-width">
+      <div class="col-xs-12 col-md-6 btn-margin">
+        <button class="btn btn-outline-primary btn-block prev-kitten"> &lt;&lt; Previous Kitten </button>
+      </div>
+
+      <div class="col-xs-12 col-md-6 btn-margin">
+       <button class="btn btn-outline-primary btn-block next-kitten"> Next Kitten &gt;&gt; </button>
+      </div>
+    </div>
+
+    <div class="row adjust-width">
+      <a class="btn btn-outline-primary btn-block" href="/litters/2">Back to mmm Litter</a>
+    </div>
+
+
 
   </div>
 
