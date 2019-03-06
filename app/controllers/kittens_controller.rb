@@ -22,7 +22,7 @@ class KittensController < ApplicationController
     @litter = @kitten.litter
     respond_to do |f|
       f.html {render :show}
-      f.json {render json: @litter}
+      f.json {render json: @kitten}
     end
   end
 

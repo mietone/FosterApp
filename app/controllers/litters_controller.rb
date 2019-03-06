@@ -37,12 +37,6 @@ class LittersController < ApplicationController
   end
 
   def create
-    # @kitten = Kitten.new(url: result["url"])
-    # binding.pry
-    # @litter = Litter.create(name: params["litter"]["name"])
-    # @kitten = Kitten.new(name: params["litter"]["kitten"]["name"], user_id: current_user.id)
-    # @kitten.save
-    # @litter.kittens.push(@kitten)
     @litter = Litter.new(litter_params)
 
     respond_to do |format|

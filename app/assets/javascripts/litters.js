@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function () {
+$(document).ready(function () {
   console.log('litters.js is loaded...');
   viewSingleKitten();
   viewSingleLitter();
@@ -49,33 +49,32 @@ function viewSingleKitten() {
   $('body').on('click', 'a.kitten-link', function(e) {
     e.preventDefault();
     url = this.href;
-    console.log("URL is: ", url)
+    console.log("URL is: ", url);
     $.ajax({
       url: url,
       method: 'GET',
       dataType: 'json'
     }).done(function(data) {
-      litter = data;
+      let kittens = data;
+      console.log("kittens are: ", kittens);
       let pathArray = url.split('/');
       let litterId = pathArray[4];
       let kittenId = pathArray[6];
-      console.log("litter_ID is:", litterId)
-      console.log("kitten_ID is:", kittenId)
+      console.log("litter_ID is:", litterId);
+      console.log("kitten_ID is:", kittenId);
 
-      // selectedKitten = litter['kittens'][]['id']
-      //
-      // console.log("WHAT IS DATA.NAME: ", selectedKitten)
+
 
       let source = $('#kitten-template').html();
-      let template = Handlebars.compile(source)
-      let kitCardHtml = template(litter)
+      let template = Handlebars.compile(source);
+      let kitCardHtml = template(kittens);
 
       $(".modal-body").html("");
 
       $(".modal-body").html(kitCardHtml);
       $('#myModal').modal('show');
-    })
-  })
+    });
+  });
 }
 
 
