@@ -56,21 +56,12 @@ function viewSingleKitten() {
       dataType: 'json'
     }).done(function(data) {
       let kittens = data;
-      console.log("kittens are: ", kittens);
-      let pathArray = url.split('/');
-      let litterId = pathArray[4];
-      let kittenId = pathArray[6];
-      console.log("litter_ID is:", litterId);
-      console.log("kitten_ID is:", kittenId);
-
-
 
       let source = $('#kitten-template').html();
       let template = Handlebars.compile(source);
       let kitCardHtml = template(kittens);
 
       $(".modal-body").html("");
-
       $(".modal-body").html(kitCardHtml);
       $('#myModal').modal('show');
     });
@@ -222,4 +213,9 @@ Handlebars.registerHelper('plural', function(number, text) {
 	return singular && match[1] // Singular case
 		|| match[2] // Plural case: 'bagel/bagels' --> bagels
 		|| match[1] + ( match[3] || 's' ); // Plural case: 'bagel(s)' or 'bagel' --> bagels
+});
+
+
+Handlebars.registerHelper('girlOrBoy', function(a, b) {
+  return (a == b) ? girl : boy;
 });

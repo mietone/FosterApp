@@ -84,7 +84,13 @@
 
           <ul class="list-group list-group-flush mr-4 ml-4">
             <li class="list-group-item">{{name}}</li>
-            <li class="list-group-item">{{sex}}</li>
+
+            {{#if sex}}
+              <li class="list-group-item">boy</li>
+            {{else}}
+              <li class="list-group-item">girl</li>
+            {{/if}}
+
             <li class="list-group-item">D.O.B: </li>
             <li class="list-group-item">n/a</li>
             <h6>
