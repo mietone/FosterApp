@@ -78,31 +78,40 @@
 
       <div class="col-lg-6">
         <div class="card-body">
-          <h2 class="card-title text-center boy">
+          <h2 class="card-title text-center
+          {{#if sex}}
+            boy">
+          {{else}}
+            girl">
+          {{/if}}
 
+          {{name}}
           </h2>
 
           <ul class="list-group list-group-flush mr-4 ml-4">
-            <li class="list-group-item">{{name}}</li>
 
             {{#if sex}}
-              <li class="list-group-item">boy</li>
+              <li class="list-group-item text-center">I'm a boy</li>
             {{else}}
-              <li class="list-group-item">girl</li>
+              <li class="list-group-item text-center">I'm a girl</li>
             {{/if}}
 
-            <li class="list-group-item">D.O.B: </li>
-            <li class="list-group-item">n/a</li>
+            {{#if dob}}
+            <li class="list-group-item text-center">{{getAge dob}}</li>
+            {{else}}
+            <li class="list-group-item text-center">Age: n/a</li>
+            {{/if}}
+
             <h6>
-              <li class="list-group-item text-muted">Fostered By:
-              <span class="font-weight-normal d-inline-block mb-0.5 ml-1">{{user.id.name}}</span>
+              <li class="list-group-item text-muted text-center">Fostered By:
+              <span class="font-weight-normal text-center d-inline-block mb-0.5 ml-1">{{user.username}}</span>
               </li>
             </h6>
           </ul>
 
           <div class="text-center m-4">
-            <h4 class="litter-name"><a href="/litters/2">{{name}}</a></h4>
-
+            <h3 class="text-muted">Litter: </h3>
+            <h4 class="litter-name">{{litter.name}}</h4>
           </div>
         </div>
       </div>
@@ -119,9 +128,6 @@
       </div>
     </div>
 
-    <div class="row adjust-width">
-      <a class="btn btn-outline-primary btn-block" href="/litters/2">Back to mmm Litter</a>
-    </div>
 
 
 

@@ -1,5 +1,6 @@
 $(document).ready(function () {
   console.log('litters.js is loaded...');
+  nextKitten();
   viewSingleKitten();
   viewSingleLitter();
   postNewLitters();
@@ -45,6 +46,29 @@ class User {
   }
 }
 
+function nextKitten() {
+  $('body').on('click', 'button.next-kitten', function(e) {
+    e.preventDefault();
+    let pathArray = window.location.pathname.split('/');
+    let litterId = pathArray[2];
+    let kittenId = pathArray[4];
+    fetch(`/litters/${litterId}/kittens/${kittenId}/next`)
+      .then(res => res.json())
+      .then(kitten => {
+        console.log('next_kitten_data_here', kitten);
+        let source = $('#kitten-template').html();
+        let template = Handlebars.compile(source);
+        let kitCardHtml = template(kitten);
+
+        $(".modal-body").html("");
+        $(".modal-body").html(kitCardHtml);
+        $('#myModal').modal('show');
+        history.pushState(null, null, `${kitten.id}`);
+      });
+  });
+}
+
+
 function viewSingleKitten() {
   $('body').on('click', 'a.kitten-link', function(e) {
     e.preventDefault();
@@ -55,16 +79,19 @@ function viewSingleKitten() {
       method: 'GET',
       dataType: 'json'
     }).done(function(data) {
-      let kittens = data;
+      let kitten = data;
+      console.log('view_single_kitten_data_here', kitten);
 
       let source = $('#kitten-template').html();
       let template = Handlebars.compile(source);
-      let kitCardHtml = template(kittens);
+      let kitCardHtml = template(kitten);
 
       $(".modal-body").html("");
       $(".modal-body").html(kitCardHtml);
       $('#myModal').modal('show');
     });
+    history.pushState(null, null, url);
+
   });
 }
 
@@ -73,7 +100,7 @@ function viewSingleLitter() {
   $('body').on('click', 'button.modalButton', function(e) {
     e.preventDefault();
     url = "/litters/" + $(this).data("name");
-
+    // console.log(url)
     $.ajax({
       url: url,
       method: 'GET',
@@ -89,6 +116,7 @@ function viewSingleLitter() {
         $(".modal-body").append(getKittenHTML);
         $('#myModal').modal('show');
       });
+      history.pushState(null, null, url);
 
     });
   });
@@ -216,6 +244,76 @@ Handlebars.registerHelper('plural', function(number, text) {
 });
 
 
-Handlebars.registerHelper('girlOrBoy', function(a, b) {
-  return (a == b) ? girl : boy;
+Handlebars.registerHelper('getAge', function(dateString) {
+  var now = new Date();
+  var today = new Date(now.getYear(),now.getMonth(),now.getDate());
+
+  var yearNow = now.getYear();
+  var monthNow = now.getMonth();
+  var dateNow = now.getDate();
+
+  var dob = new Date(dateString);
+
+  var yearDob = dob.getYear();
+  var monthDob = dob.getMonth();
+  var dateDob = dob.getDate();
+  var age = {};
+  var ageString = "";
+  var yearString = "";
+  var monthString = "";
+  var dayString = "";
+
+
+  yearAge = yearNow - yearDob;
+
+  if (monthNow >= monthDob)
+    var monthAge = monthNow - monthDob;
+  else {
+    yearAge--;
+    var monthAge = 12 + monthNow -monthDob;
+  }
+
+  if (dateNow >= dateDob)
+    var dateAge = dateNow - dateDob;
+  else {
+    monthAge--;
+    var dateAge = 31 + dateNow - dateDob;
+
+    if (monthAge < 0) {
+      monthAge = 11;
+      yearAge--;
+    }
+  }
+
+  age = {
+      years: yearAge,
+      months: monthAge,
+      days: dateAge
+      };
+
+  if ( age.years > 1 ) yearString = " years";
+  else yearString = " year";
+  if ( age.months> 1 ) monthString = " months";
+  else monthString = " month";
+  if ( age.days > 1 ) dayString = " days";
+  else dayString = " day";
+
+
+  if ( (age.years > 0) && (age.months > 0) && (age.days > 0) )
+    ageString = age.years + yearString + ", " + age.months + monthString + ", and " + age.days + dayString + " old";
+  else if ( (age.years == 0) && (age.months == 0) && (age.days > 0) )
+    ageString = age.days + dayString + " old";
+  else if ( (age.years > 0) && (age.months == 0) && (age.days == 0) )
+    ageString = age.years + yearString + " old Happy Birthday!!";
+  else if ( (age.years > 0) && (age.months > 0) && (age.days == 0) )
+    ageString = age.years + yearString + " and " + age.months + monthString + " old";
+  else if ( (age.years == 0) && (age.months > 0) && (age.days > 0) )
+    ageString = age.months + monthString + " and " + age.days + dayString + " old";
+  else if ( (age.years > 0) && (age.months == 0) && (age.days > 0) )
+    ageString = age.years + yearString + " and " + age.days + dayString + " old";
+  else if ( (age.years == 0) && (age.months > 0) && (age.days == 0) )
+    ageString = age.months + monthString + " old";
+  else ageString = "n/a";
+
+  return ageString;
 });
