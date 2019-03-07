@@ -43,7 +43,7 @@
     <div class="card border-custom">
       <div class="card-body">
         <h1 class="card-title">
-          <a href="/litters/{{id}}">{{name}}</a>
+          {{name}}
         </h1>
       </div>
       <ul class="list-group list-group-flush">
@@ -52,9 +52,7 @@
           To: {{end_date}}
         </li>
         <li class="list-group-item">
-
             {{kittens.length}} kitten{{plural kittens.length}}
-
         </li>
       </ul>
       <div class="card-body text-center">
@@ -66,6 +64,7 @@
   </div>
 
 </script>
+
 
 <script id="kitten-template" type="text/x-handlebars-template">
 

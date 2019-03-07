@@ -1,5 +1,6 @@
 $(document).ready(function () {
   console.log('litters.js is loaded...');
+  prevKitten();
   nextKitten();
   viewSingleKitten();
   viewSingleLitter();
@@ -46,6 +47,30 @@ class User {
   }
 }
 
+
+
+function prevKitten() {
+  $('body').on('click', 'button.prev-kitten', function(e) {
+    e.preventDefault();
+    let pathArray = window.location.pathname.split('/');
+    let litterId = pathArray[2];
+    let kittenId = pathArray[4];
+    console.log(kittenId)
+    fetch(`/litters/${litterId}/kittens/${kittenId}/prev`)
+    .then(res => res.json())
+    .then(kitten => {
+      console.log('prev_kitten_data_here', kitten);
+      let source = $('#kitten-template').html();
+      let template = Handlebars.compile(source);
+      let kitCardHtml = template(kitten);
+
+      $(".modal-body").html("");
+      $(".modal-body").html(kitCardHtml);
+      $('#myModal').modal('show');
+      history.pushState(null, null, `${kitten.id}`);
+    });
+  });
+}
 
 function nextKitten() {
   $('body').on('click', 'button.next-kitten', function(e) {
