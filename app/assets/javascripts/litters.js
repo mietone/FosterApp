@@ -46,6 +46,7 @@ class User {
   }
 }
 
+
 function nextKitten() {
   $('body').on('click', 'button.next-kitten', function(e) {
     e.preventDefault();
@@ -86,12 +87,12 @@ function viewSingleKitten() {
       let template = Handlebars.compile(source);
       let kitCardHtml = template(kitten);
 
+      $(".modal-title").html("");
       $(".modal-body").html("");
       $(".modal-body").html(kitCardHtml);
       $('#myModal').modal('show');
     });
     history.pushState(null, null, url);
-
   });
 }
 
@@ -106,7 +107,10 @@ function viewSingleLitter() {
       method: 'GET',
       dataType: 'json'
     }).done(function(response) {
-      // console.log("data from view click", response);
+      console.log("data from view click", response);
+
+      $(".modal-title").html("");
+      $(".modal-title").append(response[0].litter.name);
 
       $(".modal-body").html("");
       response.forEach(function(kitten) {
@@ -117,7 +121,6 @@ function viewSingleLitter() {
         $('#myModal').modal('show');
       });
       history.pushState(null, null, url);
-
     });
   });
 }
