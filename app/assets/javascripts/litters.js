@@ -194,10 +194,10 @@ function postNewLitters() {
   });
 }
 
+
 Litter.prototype.renderCard = function() {
   return Litter.template(this);
 };
-
 
 Kitten.prototype.kittenHTML = function() {
   return (`

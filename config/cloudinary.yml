@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dwewmxnvd
+  api_key: '471545233743497'
+  api_secret: aW_XpMoaKIKPLj-huELQHDaF3w0
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: dwewmxnvd
+  api_key: '471545233743497'
+  api_secret: aW_XpMoaKIKPLj-huELQHDaF3w0
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: dwewmxnvd
+  api_key: '471545233743497'
+  api_secret: aW_XpMoaKIKPLj-huELQHDaF3w0
+  enhance_image_tag: true
+  static_file_support: false

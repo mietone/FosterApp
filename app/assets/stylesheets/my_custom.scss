@@ -26,8 +26,8 @@ $theme-colors: (
 
 /* ----cards----- */
 
-#bs-override h1.card-title a,
-#bs-override h4.card-title a,
+#bs-override h1.card-title,
+#bs-override h4.card-title,
 #bs-override h1.display-3,
 #bs-override h1.litter-name,
 #bs-override h4.litter-name,
@@ -38,7 +38,7 @@ $theme-colors: (
   font-weight: 300;
 }
 
-#bs-override h1.card-title a {
+#bs-override h1.card-title {
   color: map-get($theme-colors, "primary");
   font-size: 60px;
 }
