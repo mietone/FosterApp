@@ -5,6 +5,7 @@ $(document).ready(function () {
   viewSingleKitten();
   viewSingleLitter();
   postNewLitters();
+  addLitterForm();
   loadLitters();
   uploadImage();
   Litter.templateSource = $('#litter-template').html();
@@ -191,6 +192,14 @@ function postNewLitters() {
       $('div#litters_container').prepend(litterCard);
     });
     $('#modal-window').modal( 'hide');
+  });
+}
+
+
+function addLitterForm() {
+  $('a.add-litter').on('click', function(e) {
+    e.preventDefault();
+    $($(this).data("target")+' .modal-content').load($(this).attr('href'));
   });
 }
 

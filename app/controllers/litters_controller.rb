@@ -31,8 +31,8 @@ class LittersController < ApplicationController
     @litter = Litter.new
     @litter.kittens.build(user_id: current_user.id)
     respond_to do |format|
-      format.html
-      format.js
+      format.html {render :layout => false}
+      format.json
     end
   end
 
