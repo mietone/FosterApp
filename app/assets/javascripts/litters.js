@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(function () {
   console.log('litters.js is loaded...');
   prevKitten();
   nextKitten();
@@ -56,7 +56,7 @@ function prevKitten() {
     let pathArray = window.location.pathname.split('/');
     let litterId = pathArray[2];
     let kittenId = pathArray[4];
-    console.log(kittenId)
+    console.log(kittenId);
     fetch(`/litters/${litterId}/kittens/${kittenId}/prev`)
     .then(res => res.json())
     .then(kitten => {
@@ -267,11 +267,11 @@ function uploadImage() {
 
 
 Handlebars.registerHelper('plural', function(number, text) {
-	var singular = number === 1;
+	let singular = number === 1;
 	// If no text parameter was given, just return a conditional s.
 	if ( typeof text !== 'string' ) return singular ? '' : 's';
 	// Split with regex into group1/group2 or group1(group3)
-	var match = text.match( /^([^()\/]+)(?:\/(.+))?(?:\((\w+)\))?/ );
+	let match = text.match( /^([^()\/]+)(?:\/(.+))?(?:\((\w+)\))?/ );
 	// If no match, just append a conditional s.
 	if ( !match ) return text + ( singular ? '' : 's' );
 	// We have a good match, so fire away
@@ -282,23 +282,23 @@ Handlebars.registerHelper('plural', function(number, text) {
 
 
 Handlebars.registerHelper('getAge', function(dateString) {
-  var now = new Date();
-  var today = new Date(now.getYear(),now.getMonth(),now.getDate());
+  let now = new Date();
+  let today = new Date(now.getYear(),now.getMonth(),now.getDate());
 
-  var yearNow = now.getYear();
-  var monthNow = now.getMonth();
-  var dateNow = now.getDate();
+  let yearNow = now.getYear();
+  let monthNow = now.getMonth();
+  let dateNow = now.getDate();
 
-  var dob = new Date(dateString);
+  let dob = new Date(dateString);
 
-  var yearDob = dob.getYear();
-  var monthDob = dob.getMonth();
-  var dateDob = dob.getDate();
-  var age = {};
-  var ageString = "";
-  var yearString = "";
-  var monthString = "";
-  var dayString = "";
+  let yearDob = dob.getYear();
+  let monthDob = dob.getMonth();
+  let dateDob = dob.getDate();
+  let age = {};
+  let ageString = "";
+  let yearString = "";
+  let monthString = "";
+  let dayString = "";
 
 
   yearAge = yearNow - yearDob;

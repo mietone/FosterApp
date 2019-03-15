@@ -20,7 +20,7 @@
           </div>
 
           <div class="card-body">
-            <h3 class="pb-1"> Kitten Info</h3>
+            <h3 class="pb-1"> Kitten Info </h3>
             <div class="row">
               <div class="form-group col-md-6">
                 <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -32,12 +32,12 @@
 
               <div class="form-group col-md-6">
                 <div class="choose-button">
-                  <!-- <p>Upload A Photo</p> -->
-                  <%# f.file_field :image, label: "Upload A Photo", :input_html => { :id => 'file-upload' } %>
-                  <%# f.hidden_field :image_cache %>
-                  <!-- <div class="progress-bar" id="progress-bar">
+                  <p>Upload A Photo</p>
+                  <%= f.file_field :image, label: "Upload A Photo", :input_html => { :id => 'file-upload' } %>
+                  <%= f.hidden_field :image_cache %>
+                  <div class="progress-bar" id="progress-bar">
                     <div class="progress" id="progress"></div>
-                  </div> -->
+                  </div>
                 </div>
                   <%= f.input :sex, as: :radio_buttons, collection: [['Girl', 0] ,['Boy', 1]],
                   checked: (f.object.sex ? 1 : 0), wrapper: :vertical_collection_inline %>
